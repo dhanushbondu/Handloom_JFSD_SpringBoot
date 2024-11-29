@@ -1,13 +1,8 @@
-package com.klef.Server.service;
+package com.klef.server.service;
 
-import java.util.List;
+import com.klef.server.entity.Users;
 
-import com.klef.Server.model.User;
-
-public interface Userservice {
-	public String insertData(User user);
-	public String deleteData(int id);
-	public String updateById(int id,User user);
-	 List<User> getAllUsers();
-	 
+public interface UserService {
+	public String insertUser(Users user);
+	public String checkUser(Users user,String uname,String pwd);
 }

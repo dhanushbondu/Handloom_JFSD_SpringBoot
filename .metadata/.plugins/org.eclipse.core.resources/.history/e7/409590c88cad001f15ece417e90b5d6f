@@ -1,0 +1,20 @@
+package com.klef.server.service;
+
+import org.springframework.stereotype.Service;
+
+import com.klef.server.entity.Users;
+import com.klef.server.repo.UserRepo;
+
+@Service
+public class UserServiceLogic implements UserService{
+
+	
+	private UserRepo userrepo;
+	
+	@Override
+	public String insertUser(Users user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

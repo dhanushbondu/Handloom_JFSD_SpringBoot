@@ -1,64 +1,47 @@
-package com.klef.Server.service;
-
-import java.util.List;
+package com.klef.server.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.klef.Server.model.User;
-import com.klef.Server.repo.Userrepo;
-
+import com.klef.server.entity.Users;
+import com.klef.server.repo.UserRepo;
 
 @Service
-public class Userservicelogic implements Userservice {
+public class UserServiceLogic implements UserService{
 
+	
 	@Autowired
-	private Userrepo userrepo;
+	private UserRepo userrepo;
 	
 	@Override
-	public String insertData(User user) {
-	    try {
-	        userrepo.save(user);
-	        return "user inserted successfully";
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        return "error occurred during insertion: " + e.getMessage();
-	    }
-	}
-
-	@Override
-	public String deleteData(int id) {
+	public String insertUser(Users user) {
 		try {
-			userrepo.deleteById(id);
-			return "user delection sucessful!!";
+			userrepo.save(user);
+			return "User inserted sucessfull...";
 		}catch (Exception e) {
-	        return "error occurred during delection: " + e.getMessage();
-		}
-
-	}
-
-	@Override
-	public String updateById(int id,User user) {
-		try {
-			User u = userrepo.findById(id).get();
-			u.setName(user.getName());
-			userrepo.save(u);
-			 return "User updated successfully!";
-		}catch (Exception e) {
-			 return "Error during update: " + e.getMessage();
+			return "User inserction failed...";
 		}
 	}
 
 	@Override
-	public List<User> getAllUsers() {
-		try {
-            return userrepo.findAll();
+    public String checkUser(Users user, String uname, String pwd) {
+        try {
+            // Try to find the user by username (primary key)
+            Users u = userrepo.findById(uname).orElse(null);
+            if (u == null) {
+                // If user is not found
+                return "User not found. Please check the username.";
+            } else {
+                // Compare the entered password with the stored password
+                if (u.getPwd().equals(pwd)) {  // Compare the input password with the stored password
+                    return "Login successful...";
+                } else {
+                    return "Invalid password. Please try again.";
+                }
+            }
         } catch (Exception e) {
-            return null;  // You can also handle the exception as needed
+            return "Error occurred during login attempt. Please try again.";
         }
-	}
-
-
-	
+    }
 
 }

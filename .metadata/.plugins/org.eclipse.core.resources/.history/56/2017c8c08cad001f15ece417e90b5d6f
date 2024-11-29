@@ -1,0 +1,13 @@
+package com.klef.server.service;
+
+import com.klef.server.entity.Users;
+
+public class UserServiceLogic implements UserService{
+
+	@Override
+	public String insertUser(Users user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

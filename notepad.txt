@@ -1,0 +1,9 @@
+Jfsd Comands used in the project
+
+npm create vite@latest <project name>  //to create the vite project  -> react -> java script
+
+cd <project name>
+
+npm install // to install the required packages
+
+npm run dev   // to run the server
