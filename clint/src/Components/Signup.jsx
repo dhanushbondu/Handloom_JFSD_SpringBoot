@@ -7,15 +7,15 @@ function Signup() {
     const [pwd, setPwd] = useState(""); 
 
     const handleSubmit = (e) => {
-        e.preventDefault(); // Prevent page reload on form submission
+        e.preventDefault(); 
     
         const user = {
-            uname: uname,  // or username depending on your backend
+            uname: uname, 
             email: email,
             pwd: pwd
         };
     
-        console.log("Sending data:", user); // Add this line to debug
+        console.log("Sending data:", user); 
     
         axios.post('/users/insert-user', user)
             .then((response) => {
