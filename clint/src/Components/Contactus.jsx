@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import './Contactus.css';
+import Navbar from "./Navbar1";
 function Contactus(){
     const [name,setName]=useState("");
     const [email,setEmail]=useState("");
@@ -35,14 +37,39 @@ function Contactus(){
 
     return(
         <>
-            <div>
-                <form onSubmit={handelFunctionality}>
-                    Name: <input type="text" value={name} onChange={(e)=>setName(e.target.value)} /><br></br>
-                    Email: <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)}/><br></br>
-                    Contact-Us: <input type="text" value={msg}  onChange={(e)=>setMsg(e.target.value)}/><br></br>
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
+        <Navbar/>
+        <div className="contactus-container">
+        <h2>Contact Us</h2>
+            <form onSubmit={handelFunctionality}>
+                <div>
+                    <label>Name:</label>
+                    <input 
+                        type="text" 
+                        value={name} 
+                        onChange={(e) => setName(e.target.value)} 
+                    />
+                </div>
+                <div>
+                    <label>Email:</label>
+                    <input 
+                        type="email" 
+                        value={email} 
+                        onChange={(e) => setEmail(e.target.value)} 
+                    />
+                </div>
+                <div>
+                    <label>Message:</label>
+                    <input 
+                        type="text" 
+                        value={msg}  
+                        onChange={(e) => setMsg(e.target.value)} 
+                    />
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+
+            {responseMessage && <p>{responseMessage}</p>}  {/* Display success or error message */}
+        </div>
         </>
 
     );
