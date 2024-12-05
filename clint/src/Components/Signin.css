@@ -1,0 +1,83 @@
+/* Reset basic styling */
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Center the signin container */
+.signin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full screen height */
+    background-color: #f4f4f9; /* Light background color */
+}
+
+/* Style the form */
+.signin form {
+    background-color: #ffffff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+/* Bold labels */
+.signin b {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333333;
+}
+
+/* Style inputs */
+.signin input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Button styles */
+.signin button {
+    width: 100%;
+    padding: 10px;
+    background-color: #c41d1d; /* Green button */
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signin button:hover {
+    background-color: #331d1a; /* Darker green on hover */
+}
+
+/* Style the link */
+.signin p {
+    font-size: 14px;
+    text-align: center;
+    color: #555;
+}
+
+h1 {
+    padding-left: 90px;
+    font-style: italic;
+    
+}
+
+.signin a {
+    color: #c61e1ef6;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signin a:hover {
+    text-decoration: underline;
+}

@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.klef.server.entity.Users;
@@ -19,24 +19,32 @@ public class UserController {
 	@Autowired
 	private UserService userserice;
 	
-	@PostMapping("insert-user")
-	public ResponseEntity<String> insertData(@RequestBody Users user){
-		try {
-			System.out.println(user.getUname());
-			String res=userserice.insertUser(user);
-			return ResponseEntity.status(HttpStatus.CREATED).body(res);
-		}catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("Error occurred while inserting user.");
-		}
+	@PostMapping("/insert-user")
+	public ResponseEntity<String> insertData(@RequestBody Users user) {
+	    try {
+	        System.out.println(user.getUname());
+	        String res = userserice.insertUser(user);
+	        if (res.contains("Username already exists")) {
+	            return ResponseEntity.status(HttpStatus.CONFLICT).body(res); // 409 Conflict
+	        }
+	        return ResponseEntity.status(HttpStatus.CREATED).body(res); // 201 Created
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occurred while inserting user.");
+	    }
 	}
+
 	
 	
 	@PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody Users user) {
-        // Use uname and pwd from the request body to check the user's credentials
-        String result = userserice.checkUser(user, user.getUname(), user.getPwd());
-        return ResponseEntity.ok(result);
-    }
+	public ResponseEntity<String> loginUser(@RequestBody Users user) {
+	    String result = userserice.checkUser(user, user.getUname(), user.getPwd());
+	    if (result.equals("Login successful...")) {
+	        return ResponseEntity.ok(user.getUname()); // Return username on successful login
+	    } else {
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(result); // Unauthorized response
+	    }
+	}
+
 
 	
 }

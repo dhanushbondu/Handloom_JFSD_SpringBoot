@@ -15,13 +15,18 @@ public class UserServiceLogic implements UserService{
 	
 	@Override
 	public String insertUser(Users user) {
-		try {
-			userrepo.save(user);
-			return "User inserted sucessfull...";
-		}catch (Exception e) {
-			return "User inserction failed...";
-		}
+	    try {
+	        // Check if user already exists
+	        if (userrepo.existsById(user.getUname())) {
+	            return "Username already exists. Please choose a different one.";
+	        }
+	        userrepo.save(user);
+	        return "User inserted successfully...";
+	    } catch (Exception e) {
+	        return "User insertion failed. Error: " + e.getMessage();
+	    }
 	}
+
 
 	@Override
     public String checkUser(Users user, String uname, String pwd) {
@@ -29,11 +34,9 @@ public class UserServiceLogic implements UserService{
             // Try to find the user by username (primary key)
             Users u = userrepo.findById(uname).orElse(null);
             if (u == null) {
-                // If user is not found
                 return "User not found. Please check the username.";
             } else {
-                // Compare the entered password with the stored password
-                if (u.getPwd().equals(pwd)) {  // Compare the input password with the stored password
+                if (u.getPwd().equals(pwd)) {  
                     return "Login successful...";
                 } else {
                     return "Invalid password. Please try again.";

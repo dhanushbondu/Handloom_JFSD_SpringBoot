@@ -7,3 +7,13 @@ cd <project name>
 npm install // to install the required packages
 
 npm run dev   // to run the server
+
+npm install react-router-dom@latest
+
+
+create  database <database name:  handloom> // to create the database name
+
+create a spring boot using the following link `https://start.spring.io/`
+
+add the  dependices   1. web  2.dev tools  3.JPA  4. MYSQL
+

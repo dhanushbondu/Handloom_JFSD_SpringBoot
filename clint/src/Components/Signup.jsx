@@ -1,65 +1,81 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import './Signup.css';
 
 function Signup() {
     const [uname, setUname] = useState("");
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState(""); 
+    const navigate = useNavigate();
+
 
     const handleSubmit = (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
     
         const user = {
-            uname: uname, 
+            uname: uname,
             email: email,
-            pwd: pwd
+            pwd: pwd,
         };
-    
-        console.log("Sending data:", user); 
     
         axios.post('/users/insert-user', user)
             .then((response) => {
-                alert("User added successfully!"); 
-                setUname("");
-                setEmail("");
-                setPwd("");
+                if (response.status === 201) {
+                    alert("✅ User added successfully!");
+                    setUname("");
+                    setEmail("");
+                    setPwd("");
+                    navigate("/");
+                }
             })
             .catch((error) => {
-                console.error("Error adding user:", error);
-                alert("Error adding user.");
+                if (error.response && error.response.status === 409) {
+                    // Handle duplicate username
+                    alert("❌ Username already exists. Please choose a different one.");
+                } else {
+                    // Handle other errors
+                    alert("❌ Error adding user. Please try again.");
+                }
             });
     };
+    
     
 
     return (
         <>
-            <div>
+            <div className="signup-container">
+
                 <form onSubmit={handleSubmit}>
+                <h1 style={{alignItems:"center"}}>Sign-up</h1>
                     <label>
-                        Username: 
+                        <b>Username:</b> 
                         <input 
+                            name="username"
                             type="text" 
                             value={uname} 
                             onChange={(e) => setUname(e.target.value)} 
                         />
-                    </label><br />
+                    </label>
                     <label>
-                        Email: 
+                       <b> Email:</b> 
                         <input 
+                            name="email"
                             type="email" 
                             value={email} 
                             onChange={(e) => setEmail(e.target.value)} 
                         />
-                    </label><br />
+                    </label>
                     <label>
-                        Password: 
+                      <b>Password: </b>
                         <input 
                             type="password" 
                             value={pwd} 
                             onChange={(e) => setPwd(e.target.value)} 
                         />
-                    </label><br />
+                    </label>
                     <button type="submit">Signup</button>
+                    
                 </form>
             </div>
         </>
