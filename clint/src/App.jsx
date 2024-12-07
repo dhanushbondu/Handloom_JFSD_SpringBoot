@@ -5,12 +5,14 @@ import Signin from "./Components/Signin";
 import Home from './Components/Main/Home';
 import HomeMain from './Components/HomeMain';
 import Contactus from "./Components/Contactus";
+import AboutUs from "./Components/Aboutus";
 function App() {
   console.log("App is rendered");
   return (
     <Routes>
-    <Route path="/" element={<HomeMain/>}/>
+    <Route path="/home-main" element={<HomeMain/>}/>
     <Route path="/signin" element={<Signin/>}/>
+    <Route path="/aboutus" element={<AboutUs/>}/>
     <Route path="/contactus" element={<Contactus/>}/>    
     <Route path="/signup" element={<SignupForm/>}/>
     <Route path="/signin/home" element={<Home/>}/>
