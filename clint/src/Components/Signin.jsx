@@ -3,7 +3,7 @@ import React from "react";
 import './Signin.css';
 import { Link , useNavigate} from "react-router-dom"; // Import Link for navigation
 import { useState } from "react";
-
+import Navbar from "./Navbar1";
 function Signin() {
   const [uname, setUname] = useState("");
   const [pwd, setPwd] = useState("");
@@ -32,10 +32,11 @@ function Signin() {
 
   return (
     <>
+    <Navbar/>
       <div className="signin">
         <form onSubmit={handleSubmit}>
-          <h1>Login</h1>
-          <b>Username:</b>{" "}
+        <h1 style={{alignItems:"center"}}>Sign-in</h1>
+        <b>Username:</b>{" "}
           <input
             type="text"
             value={uname}

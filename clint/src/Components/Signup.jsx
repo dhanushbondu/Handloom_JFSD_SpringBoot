@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,Link} from "react-router-dom";
 import axios from "axios";
 import './Signup.css';
-
+import Navbar from "./Navbar1";
 function Signup() {
     const [uname, setUname] = useState("");
     const [email, setEmail] = useState("");
@@ -44,6 +44,7 @@ function Signup() {
 
     return (
         <>
+        <Navbar/>
             <div className="signup-container">
 
                 <form onSubmit={handleSubmit}>
@@ -75,7 +76,11 @@ function Signup() {
                         />
                     </label>
                     <button type="submit">Signup</button>
-                    
+                    <br />
+          <p>
+           Already having an account?{" "}
+            <Link to="/signin">Login</Link>
+          </p>
                 </form>
             </div>
         </>
