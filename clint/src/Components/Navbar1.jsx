@@ -8,11 +8,11 @@ function Navbar() {
                 <a href="#" className="logo-link">Handlooms</a>
             </div>
             <div className="nav-links">
-                <a href="/home-main">Home</a>
+                <a href="/">Home</a>
                 <a href="/aboutus">About Us</a>
                 <a href="/contactus">Contact Us</a>
                 <a href="/signin">Login</a>
-                <a href="/admin-login">Admin</a>
+                <a href="/adminlogin">Admin</a>
 
             </div>
         </div>

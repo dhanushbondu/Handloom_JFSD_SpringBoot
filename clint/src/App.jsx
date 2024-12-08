@@ -5,17 +5,20 @@ import Signin from "./Components/Signin";
 import Home from './Components/Main/Home';
 import HomeMain from './Components/HomeMain';
 import Contactus from "./Components/Contactus";
-import AboutUs from "./Components/Aboutus";
+import AdminSignin from "./Components/AdminSignin";
+import Aboutus from "./Components/AboutUsPage";
 function App() {
   console.log("App is rendered");
   return (
     <Routes>
-    <Route path="/home-main" element={<HomeMain/>}/>
+    <Route path="/" element={<HomeMain/>}/>
     <Route path="/signin" element={<Signin/>}/>
-    <Route path="/aboutus" element={<AboutUs/>}/>
+    <Route path="/adminlogin" element={<AdminSignin/>}/>
     <Route path="/contactus" element={<Contactus/>}/>    
     <Route path="/signup" element={<SignupForm/>}/>
     <Route path="/signin/home" element={<Home/>}/>
+    <Route path="/aboutus" element={<Aboutus/>}/>
+
 
     </Routes>
 
