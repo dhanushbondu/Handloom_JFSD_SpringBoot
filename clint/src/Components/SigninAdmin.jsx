@@ -2,10 +2,11 @@ import axios from "axios";
 import { React, useState } from "react";
 import './SigninAdmin.css';
 import Navbar from "./Navbar1";
-
+import { useNavigate } from "react-router-dom";
 function SigninAdmin() {
     const [uname, setUname] = useState("");
     const [pwd, setPwd] = useState("");
+    const navigate = useNavigate();
 
     const handelSubmit = (e) => {
         e.preventDefault();  // Prevent page reload
@@ -21,6 +22,8 @@ function SigninAdmin() {
                 // Check if the login is successful (status 200)
                 if (response.status === 200) {
                     alert("✅ Login Successful!");
+                    localStorage.setItem("username", response.data);
+                    navigate("/signinadmin/home");
                     setUname("");  // Clear username field
                     setPwd("");    // Clear password field
                 }
