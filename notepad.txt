@@ -10,6 +10,14 @@ npm run dev   // to run the server
 
 npm install react-router-dom@latest
 
+npm install framer-motion
+
+npm install @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/fontawesome-svg-core
+
+npm install react-icons
+
+npm install chart.js react-chartjs-2
+
 
 create  database <database name:  handloom> // to create the database name
 

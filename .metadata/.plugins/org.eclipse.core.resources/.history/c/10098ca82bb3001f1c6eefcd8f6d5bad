@@ -1,0 +1,5 @@
+package com.klef.server.service;
+
+public class ContactusServiceLogic implements {
+	
+}

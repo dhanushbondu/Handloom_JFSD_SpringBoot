@@ -1,25 +1,50 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import { Bar } from "react-chartjs-2"; // Importing the Bar chart
+import { Chart as ChartJS } from "chart.js/auto"; // Automatically register chart components
 import "./AdminHome.css";
 import axios from "axios";
 
 function AdminHome() {
     const [ucount, setUcount] = useState(0);
+    const [genderCount, setGenderCount] = useState({ Male: 0, Female: 0 });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const navigation = useNavigate();
 
     useEffect(() => {
+        // Fetching user count and gender data
         axios
-            .get("/users/users-count") // Assuming the proxy is set
+            .get("/users/gender-count") // Assuming you have an endpoint that provides gender counts
             .then((response) => {
-                setUcount(response.data); // Directly set the count since it's returned as a number
+                setGenderCount(response.data); // Set gender data (Male, Female)
+                setUcount(response.data.Male + response.data.Female); // Set total users
                 setLoading(false);
             })
             .catch((err) => {
-                setError("Failed to fetch users count. Please try again.");
+                setError("Failed to fetch users count and gender data. Please try again.");
                 setLoading(false);
             });
     }, []);
+
+    const manageusers = () => {
+        navigation("/signinadmin/home/manageusers");
+    };
+
+    // Chart.js data configuration
+    const chartData = {
+        labels: ["Male", "Female"], // Gender labels
+        datasets: [
+            {
+                label: "User Distribution by Gender",
+                data: [genderCount.Male, genderCount.Female], // Data from the API
+                backgroundColor: ["#3498db", "#e74c3c"], // Colors for the bars
+                borderColor: ["#2980b9", "#c0392b"],
+                borderWidth: 1,
+            },
+        ],
+    };
 
     return (
         <div className="admin-dashboard">
@@ -49,7 +74,7 @@ function AdminHome() {
                 <div className="charts">
                     <div className="chart-box">
                         <h3>Performance Chart</h3>
-                        <p>[Insert Chart Here]</p>
+                        <Bar data={chartData} options={{ responsive: true }} /> {/* Rendering the bar chart */}
                     </div>
                     <div className="chart-box">
                         <h3>Recent Activities</h3>
@@ -60,6 +85,17 @@ function AdminHome() {
                         </ul>
                     </div>
                 </div>
+            </div>
+            <div className="buttons-section">
+                <button className="action-button" onClick={manageusers}>
+                    Manage Users
+                </button>
+                <button className="action-button" onClick={() => alert("Products clicked")}>
+                    Products
+                </button>
+                <button className="action-button" onClick={() => alert("Contact Us clicked")}>
+                    Contact Us
+                </button>
             </div>
         </div>
     );

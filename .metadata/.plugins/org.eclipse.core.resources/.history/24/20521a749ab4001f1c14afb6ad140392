@@ -1,0 +1,12 @@
+package com.klef.server.entity;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class Admin {
+	
+	private String uname;
+	private String email;
+	private String pwd;
+	
+}

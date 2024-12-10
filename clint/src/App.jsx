@@ -8,6 +8,8 @@ import Contactus from "./Components/Contactus";
 import Aboutus from "./Components/AboutUsPage";
 import SigninAdmin from "./Components/SigninAdmin";
 import AdminHome from "./Components/Admin/AdminHome";
+import ManageUsers from "./Components/Admin/ManageUsers";
+
 function App() {
   console.log("App is rendered");
   return (
@@ -20,6 +22,8 @@ function App() {
     <Route path="/aboutus" element={<Aboutus/>}/>
     <Route path="/signinadmin" element={<SigninAdmin/>}/>
     <Route path="/signinadmin/home" element={<AdminHome/>}/>
+    <Route path="/signinadmin/home/manageusers" element={<ManageUsers/>}/>
+
 
 
     </Routes>

@@ -1,0 +1,13 @@
+package com.klef.server.service;
+
+import com.klef.server.entity.Contactus;
+
+public class ContactusServiceLogic implements ContactusService{
+
+	@Override
+	public String insertContactData(Contactus contactus) {
+		
+		return null;
+	}
+	
+}

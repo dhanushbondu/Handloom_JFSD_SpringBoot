@@ -7,5 +7,5 @@ import com.klef.server.entity.Users;
 
 @Repository
 public interface UserRepo extends JpaRepository<Users, String>{
-
+	long countByGender(String gender);
 }

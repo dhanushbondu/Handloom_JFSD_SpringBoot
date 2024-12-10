@@ -1,0 +1,5 @@
+package com.klef.server.entity;
+
+public class Admin {
+	
+}

@@ -1,0 +1,75 @@
+/* General styling for users table */
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #f9f9f9;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.users-table th,
+.users-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.users-table th {
+    background-color: #c3253f;
+    color: white;
+}
+
+.users-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.users-table tr:hover {
+    background-color: #ddd;
+}
+
+.delete-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #c0392b;
+}
+
+/* Fade-in animation for the table */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Animation for the chart */
+.chart-box {
+    animation: fadeIn 1s ease-in-out;
+    margin-bottom: 20px;
+}
+
+/* Make chart smaller */
+.chart-box canvas {
+    width: 100% !important;  /* Ensure it fits the container */
+    height: 250px !important; /* Adjust the height of the chart */
+}
+
+/* Optional: add a responsive design */
+@media (max-width: 768px) {
+    .chart-box canvas {
+        height: 200px !important; /* Smaller size for mobile view */
+    }
+}

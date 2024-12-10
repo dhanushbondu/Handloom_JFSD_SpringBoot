@@ -1,9 +1,16 @@
 package com.klef.server.controller;
 
+import java.util.*;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
@@ -44,7 +51,41 @@ public class UserController {
 	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(result); // Unauthorized response
 	    }
 	}
-
-
 	
+    @GetMapping("/users-count")
+    public long getUserCount() {
+        return userserice.getUserCount(); // Fetch the user count from the service
+    }
+	
+    @GetMapping("/userslist")
+    public List<Users> getUsers() {
+        return userserice.getAllUsers();  
+    }
+    
+    @DeleteMapping("/deleteusers/{uname}")
+    public ResponseEntity<String> deleteUser(@PathVariable String uname) {
+        try {
+            userserice.deleteUser(uname);
+            return ResponseEntity.ok("User deleted successfully.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Failed to delete user: " + e.getMessage());
+        }
+    }
+
+    @PutMapping("/users/{id}")
+    public Users updateUser(@PathVariable Long id, @RequestBody Users user) {
+        return userserice.updateUser(id, user);  // Update user details by ID
+    }
+    
+    @GetMapping("/gender-count")
+    public ResponseEntity<Map<String, Long>> getGenderCount() {
+        Map<String, Long> genderCount = new HashMap<>();
+        genderCount.put("Male", userserice.getUserCountByGender("m"));
+        genderCount.put("Female", userserice.getUserCountByGender("f"));
+        
+        return ResponseEntity.ok(genderCount);
+    }
+
+
 }

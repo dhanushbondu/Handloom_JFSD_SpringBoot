@@ -11,6 +11,13 @@ public class Users {
 	private String uname;
 	private String email;
 	private String pwd;
+	private String gender;
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 	public String getUname() {
 		return uname;
 	}

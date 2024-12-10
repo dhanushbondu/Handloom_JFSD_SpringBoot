@@ -1,0 +1,52 @@
+package com.klef.server.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.klef.server.entity.Admin;
+import com.klef.server.service.AdminService;
+
+
+@RestController
+@RequestMapping("/admin")
+public class AdminController {
+	
+	@Autowired
+	private AdminService adminservice;
+	
+	@PostMapping("/addAdmin")
+	public ResponseEntity<String> addAdmin(@RequestBody Admin admin){
+		try {
+			String res = adminservice.addAdmin(admin);
+			if(res!=null) {
+				return ResponseEntity.status(HttpStatus.CREATED).body(res);
+			}
+		}catch(Exception e) {
+			
+		}
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occurred while inserting admin.");
+
+	}
+	
+	@PostMapping("/admin-login/{uname}/{pwd}")
+	public ResponseEntity<String> adminLogin(@PathVariable("uname")  String uname,@PathVariable("pwd") String pwd, Admin admin){
+		try {
+			String res = adminservice.adminLogin(uname, pwd, admin);
+			if(res.equals("admin login sucessfull..")) {
+                return ResponseEntity.status(HttpStatus.OK).body("Login successful.");
+			}
+			else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials.");
+            }
+		}catch (Exception e) {
+			 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                     .body("Error occurred during login: " + e.getMessage());		}
+	}
+	
+}

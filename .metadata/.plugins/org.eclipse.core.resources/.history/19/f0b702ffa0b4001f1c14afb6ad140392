@@ -1,0 +1,51 @@
+package com.klef.server.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.klef.server.entity.Admin;
+import com.klef.server.repo.AdminRepo;
+
+@Service
+public class AdminServiceLogic implements AdminService{
+	
+	@Autowired
+	private AdminRepo adminrepo;
+
+
+	@Override
+	public String addAdmin(Admin admin) {
+		try {
+			Admin res = adminrepo.save(admin);
+			if(res!=null) {
+				return "Admin registering Sucessfull...";
+			}
+			
+		}catch(Exception e) {
+
+		}
+		return "Admin registering Failed...";
+
+	}
+
+
+	@Override
+	public String adminLogin(String uname, String pwd, Admin admin) {
+		try {
+			Admin res = adminrepo.findById(uname).orElse(null);
+			if(res!=null) {
+				if(res.getPwd().equals(pwd)) {
+					return "Admin Login sucessfull..";
+				}
+			}
+			else {
+				
+			}
+					
+				
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "admin login failed..";
+	}
+}
