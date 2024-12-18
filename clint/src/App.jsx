@@ -9,6 +9,8 @@ import Aboutus from "./Components/AboutUsPage";
 import SigninAdmin from "./Components/SigninAdmin";
 import AdminHome from "./Components/Admin/AdminHome";
 import ManageUsers from "./Components/Admin/ManageUsers";
+import Products from "./Components/Admin/Products";
+import AddProducts from "./Components/Admin/AddProducts";
 
 function App() {
   console.log("App is rendered");
@@ -23,6 +25,9 @@ function App() {
     <Route path="/signinadmin" element={<SigninAdmin/>}/>
     <Route path="/signinadmin/home" element={<AdminHome/>}/>
     <Route path="/signinadmin/home/manageusers" element={<ManageUsers/>}/>
+    <Route path="/signinadmin/home/products" element={<Products/>}/>
+    <Route path="/signinadmin/home/addproducts" element={<AddProducts/>}/>
+
 
 
 

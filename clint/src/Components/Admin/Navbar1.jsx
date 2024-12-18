@@ -12,6 +12,7 @@ function Navbar1() {
             </div>
             <div className="nav-links">
                 <Link to="/signinadmin/home">Home</Link>
+                <Link to="/signinadmin/home/products">Products</Link>
                 <Link to="/">Logout</Link>
             </div>
             {username && (

@@ -47,24 +47,29 @@ body, html {
     align-items: center;
     color: white;
     text-decoration: none;
-    padding: 10px 15px;
-    margin: 5px 0;
+    padding: 12px 18px;
+    margin: 6px 0;
     text-align: left;
     transition: background-color 0.3s, color 0.3s;
     width: 100%;
     box-sizing: border-box;
+    border-radius: 5px; /* Add rounded corners */
 }
 
 .side-navbar a:hover {
     background-color: #301a1a;
-    border-radius: 5px;
     color: #e3e3e3;
 }
 
 /* Icon Styling */
 .side-navbar .icon {
-    margin-right: 10px;
-    font-size: 18px;
+    margin-right: 12px;
+    font-size: 20px; /* Slightly larger icons */
+}
+
+/* Updated Icon for Products */
+.side-navbar .products-icon {
+    content: url('path/to/new/icon.svg'); /* Specify the new icon path */
 }
 
 /* User Info Styling */
@@ -72,24 +77,69 @@ body, html {
     margin-top: auto; /* Push user info to the bottom */
     width: 100%;
     text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Add subtle separator */
 }
 
 .side-navbar .user-box {
     background-color: #f4f4f4;
     color: #333;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 14px;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 15px;
 }
-
 
 /* Responsive Design */
 @media (max-width: 600px) {
     .side-navbar {
         width: 200px;
+        padding: 15px 8px;
     }
 
-    body {
-        margin-left: 200px;
+    .side-navbar .logo {
+        font-size: 20px;
     }
+
+    .side-navbar a {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    .side-navbar .icon {
+        font-size: 16px;
+    }
+
+    .side-navbar .user-box {
+        font-size: 13px;
+        padding: 10px;
+    }
+}
+
+/* Enhanced Accessibility */
+.side-navbar a:focus {
+    outline: 2px dashed #fff;
+    outline-offset: 2px;
+    background-color: #401a1a;
+}
+
+.side-navbar .logout-button {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: white;
+    text-decoration: none;
+    padding: 12px 18px;
+    margin: 6px 0;
+    text-align: left;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.side-navbar .logout-button:hover {
+    background-color: #301a1a;
+    color: #e3e3e3;
 }

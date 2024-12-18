@@ -1,7 +1,7 @@
 import React from "react";
 import './Navbar.css';
 import { Link } from "react-router-dom";
-import { FaHome, FaSignOutAlt } from "react-icons/fa"; // Example icons
+import { FaHome, FaSignOutAlt, FaBox } from "react-icons/fa"; // Updated: Import the desired product icon
 
 function Navbar() {
     const username = localStorage.getItem("username") || "Guest";
@@ -17,6 +17,9 @@ function Navbar() {
                 </Link>
                 <Link to="/">
                     <FaSignOutAlt className="icon" /> Logout
+                </Link>
+                <Link to="/signinadmin/home/products">
+                    <FaBox className="icon" /> Products {/* Updated icon */}
                 </Link>
             </div>
             <div className="user-info">
