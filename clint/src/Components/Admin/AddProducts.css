@@ -1,38 +1,48 @@
+/* General container for the add product form */
 .add-product-container {
-    padding: 20px;
+    padding: 30px;
     background-color: #f9f9f9;
     max-width: 600px;
     margin: 0 auto;
     border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
     text-align: center;
     color: #c3253f;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
+/* Form layout */
 .add-product-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 25px;
 }
 
+/* Form group for label and input fields */
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 12px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Labels */
 label {
     font-weight: bold;
     color: #333;
+    font-size: 16px;
 }
 
+/* Input and text area styling */
 input,
 textarea {
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
@@ -40,14 +50,56 @@ textarea {
     box-sizing: border-box;
 }
 
+/* Textarea to resize vertically */
 textarea {
     resize: vertical;
 }
 
+/* Styling for file input */
 input[type="file"] {
     padding: 5px;
 }
 
+/* Icon styling */
+.form-group .input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+/* Container for inputs to ensure the icon stays with the input */
+.input-wrapper {
+    position: relative;
+}
+
+/* Gender radio button container */
+.form-group div {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+/* Individual radio button and its label */
+input[type="radio"] {
+    width: auto;
+    height: 18px;
+    margin: 0;
+}
+
+label[for="male"], label[for="female"] {
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Change color when radio is selected */
+input[type="radio"]:checked + label {
+    color: #4caf50; /* Green color when selected */
+}
+
+/* Button styling */
 .submit-button {
     padding: 15px;
     background-color: #4caf50;
@@ -58,9 +110,18 @@ input[type="file"] {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
+    text-align: center;
+    width: 100%; /* Ensure button takes full width */
 }
 
+/* Hover state for button */
 .submit-button:hover {
     background-color: #45a049;
     transform: scale(1.05);
+}
+
+/* Focus effect for better accessibility */
+.submit-button:focus {
+    outline: 2px solid #4caf50;
+    outline-offset: 2px;
 }
