@@ -1,7 +1,8 @@
 package com.klef.server.service;
 
-import com.klef.server.entity.Users;
 import java.util.List;
+
+import com.klef.server.entity.Users;
 
 public interface UserService {
     public String insertUser(Users user);  // Insert a new user

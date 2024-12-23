@@ -14,6 +14,7 @@ public class UserServiceLogic implements UserService {
     @Autowired
     private UserRepo userrepo;
 
+
     @Override
     public String insertUser(Users user) {
         try {
@@ -69,12 +70,13 @@ public class UserServiceLogic implements UserService {
 
     @Override
     public Users updateUser(Long id, Users user) {
-        // Implementation for updating a user
+        
         return null;
     }
     
     public Long getUserCountByGender(String gender) {
         return userrepo.countByGender(gender); // Assuming you have a gender field in your Users entity
     }
+
 
 }

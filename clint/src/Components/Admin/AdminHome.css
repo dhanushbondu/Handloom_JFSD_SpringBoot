@@ -80,16 +80,7 @@ body, html {
     font-size: 14px;
 }
 
-/* Buttons section styling */
-.buttons-section {
-    position: fixed; /* Ensures the buttons stay at the bottom of the viewport */
-    bottom: 20px; /* Adjust the spacing from the bottom */
-    width: 100%; /* Makes the section span the entire width */
-    text-align: center; /* Centers the buttons */
-    background-color: #f4f4f4; /* Matches the dashboard background */
-    padding: 10px 0;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for separation */
-}
+
 
 /* Button styling */
 .action-button {
@@ -102,22 +93,5 @@ body, html {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.action-button:hover {
-    background-color: #c3253f;
-}
-
-.chart-box {
-    width: 80%;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
-}
-
-.chart-box canvas {
-    width: 100% !important;
-    height: 400px !important;
+   
 }

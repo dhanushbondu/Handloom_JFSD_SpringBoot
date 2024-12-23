@@ -11,6 +11,7 @@ import AdminHome from "./Components/Admin/AdminHome";
 import ManageUsers from "./Components/Admin/ManageUsers";
 import Products from "./Components/Admin/Products";
 import AddProducts from "./Components/Admin/AddProducts";
+import ViewProducts from "./Components/Admin/ViewProducts";
 
 function App() {
   console.log("App is rendered");
@@ -27,8 +28,7 @@ function App() {
     <Route path="/signinadmin/home/manageusers" element={<ManageUsers/>}/>
     <Route path="/signinadmin/home/products" element={<Products/>}/>
     <Route path="/signinadmin/home/addproducts" element={<AddProducts/>}/>
-
-
+    <Route path="/signinadmin/home/products/view" element={<ViewProducts/>}/>
 
 
     </Routes>

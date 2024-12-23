@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.klef.server.entity.Users;
@@ -54,7 +53,7 @@ public class UserController {
 	
     @GetMapping("/users-count")
     public long getUserCount() {
-        return userserice.getUserCount(); // Fetch the user count from the service
+        return userserice.getUserCount(); 
     }
 	
     @GetMapping("/userslist")

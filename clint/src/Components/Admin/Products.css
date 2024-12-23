@@ -1,127 +1,71 @@
-/* General Container Styling */
-.products-container {
-    display: flex;
-}
-
-/* Main Content Area */
-.products-content {
-    margin-left: 250px; /* Align next to the side navbar */
-    padding: 20px;
-    width: calc(100% - 250px); /* Take up remaining space */
-    box-sizing: border-box;
-    background-color: #f9f9f9;
-    min-height: 100vh;
-}
-
-/* Page Title */
-h1 {
-    color: #c3253f;
-    margin-bottom: 20px;
-    font-size: 28px;
-}
-
 /* Product Actions */
 .product-actions {
     display: flex;
+    flex-wrap: wrap; /* Allows wrapping if there isn't enough space */
     gap: 20px;
     margin-bottom: 30px;
+    justify-content: center; /* Centers the buttons */
 }
-
+/* Action Button as Box */
 .action-button {
-    padding: 15px 30px;
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
     display: flex;
-    align-items: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    flex-direction: column; /* Allows content (icon + text) to stack */
+    align-items: center; /* Center the content */
+    justify-content: center;
+    width: 200px; /* Increased width */
+    height: 200px; /* Increased height */
+    padding: 20px;
+    background-color: white; /* Neutral background for box */
+    color: #333; /* Default text color */
+    border: 1px solid #ddd; /* Subtle border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for box effect */
+    text-align: center; /* Centers text inside box */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Button Colors */
+/* Hover Effects */
+.action-button:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+}
+
+/* Button Icon Styling */
+.button-icon {
+    font-size: 40px; /* Larger icon size for prominence */
+    margin-bottom: 15px; /* Space between icon and text */
+}
+
+/* Add Product Button */
 .add-product {
     background-color: #4caf50; /* Green */
+    color: white;
 }
 
+/* Delete Product Button */
 .delete-product {
     background-color: #f44336; /* Red */
+    color: white;
 }
 
+/* Update Product Button */
 .update-product {
     background-color: #ff9800; /* Orange */
-}
-
-.action-button:hover {
-    transform: scale(1.05);
-    opacity: 0.9;
-}
-
-/* Icon in Button */
-.button-icon {
-    margin-right: 10px;
-    font-size: 20px;
-    vertical-align: middle;
-}
-
-/* Product List Styling */
-.product-list {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.product-list h2 {
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.product-list ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.product-list li {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    margin: 10px 0;
-    background-color: #f1f1f1;
-    border-radius: 5px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Product Images */
-.product-image {
-    width: 50px;
-    height: 50px;
-    margin-right: 15px;
-    border-radius: 5px;
+    color: white;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    .products-content {
-        margin-left: 200px; /* Adjust for smaller navbar width */
-        padding: 15px;
-    }
-
-    .product-actions {
-        flex-direction: column;
-        gap: 15px;
-    }
-
     .action-button {
-        width: 100%;
-        max-width: 300px;
+        width: 160px; /* Smaller width for smaller screens */
+        height: 160px; /* Smaller height for smaller screens */
+        font-size: 14px; /* Adjust font size */
     }
 
-
-    .product-image {
-        margin-bottom: 10px;
+    .button-icon {
+        font-size: 32px; /* Adjust icon size */
     }
 }
