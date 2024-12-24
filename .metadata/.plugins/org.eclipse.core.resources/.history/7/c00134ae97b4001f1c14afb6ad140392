@@ -1,7 +1,0 @@
-package com.klef.server.controller;
-
-public class Snippet {
-	<a href="/signin">Login</a>
-	
-}
-

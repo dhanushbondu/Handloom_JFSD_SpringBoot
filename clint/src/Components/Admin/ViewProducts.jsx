@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import SideNavbar from "./Navbar"; // Correct the import to your side navbar component
+import SideNavbar from "./Navbar"; 
 import "./ViewProducts.css";
 
 function ViewProducts() {
     const [products, setProducts] = useState([]);
+    const[id,setId]=useState();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
@@ -54,6 +55,7 @@ function ViewProducts() {
                                 className="product-image"
                             />
                             <h2 className="product-name">{product.name}</h2>
+                            <p className="product-id">Id={product.id}</p>
                             <p className="product-description">{product.discription}</p>
                             <p className="product-price">Price: ₹{product.price.toFixed(2)}</p>
                             <p className="product-gender">

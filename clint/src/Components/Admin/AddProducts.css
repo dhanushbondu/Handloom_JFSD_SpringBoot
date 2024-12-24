@@ -1,17 +1,33 @@
 /* General container for the add product form */
 .add-product-container {
+    margin-left: 250px; /* Space for the sidebar */
     padding: 30px;
     background-color: #f9f9f9;
-    max-width: 600px;
+    max-width: 800px; /* Adjusted width */
     margin: 0 auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out; /* Fade-in animation */
 }
 
+/* Heading styles */
 h1 {
     text-align: center;
     color: #c3253f;
     margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: bold;
+    animation: slideDown 0.8s ease-in-out; /* Slide-in animation */
+    position: relative;
+}
+
+h1::after {
+    content: "✨🎉";
+    position: absolute;
+    right: -40px;
+    top: 0;
+    font-size: 30px;
+    animation: bounce 1.5s infinite;
 }
 
 /* Form layout */
@@ -19,27 +35,40 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 25px;
+    animation: fadeIn 1.2s ease-in-out;
 }
 
-/* Form group for label and input fields */
+/* Form group styling */
 .form-group {
     display: flex;
     flex-direction: column;
     gap: 12px;
     background-color: #fff;
-    padding: 15px;
+    padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
-/* Labels */
+/* Emoji for each form group */
+.form-group label::before {
+    content: "💡";
+    font-size: 20px;
+    margin-right: 8px;
+    animation: spin 1s linear infinite;
+}
+
+/* Label styles */
 label {
     font-weight: bold;
     color: #333;
     font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between label text and icon */
 }
 
-/* Input and text area styling */
+/* Input and textarea styling */
 input,
 textarea {
     padding: 12px;
@@ -48,6 +77,15 @@ textarea {
     font-size: 16px;
     width: 100%;
     box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+/* Focus effect for inputs and textarea */
+input:focus,
+textarea:focus {
+    border-color: #c3253f;
+    outline: none;
+    box-shadow: 0 0 8px rgba(195, 37, 63, 0.4);
 }
 
 /* Textarea to resize vertically */
@@ -60,20 +98,6 @@ input[type="file"] {
     padding: 5px;
 }
 
-/* Icon styling */
-.form-group .input-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #999;
-}
-
-/* Container for inputs to ensure the icon stays with the input */
-.input-wrapper {
-    position: relative;
-}
-
 /* Gender radio button container */
 .form-group div {
     display: flex;
@@ -81,13 +105,14 @@ input[type="file"] {
     align-items: center;
 }
 
-/* Individual radio button and its label */
+/* Radio buttons */
 input[type="radio"] {
     width: auto;
     height: 18px;
     margin: 0;
 }
 
+/* Gender label styles */
 label[for="male"], label[for="female"] {
     font-size: 16px;
     color: #333;
@@ -99,29 +124,113 @@ input[type="radio"]:checked + label {
     color: #4caf50; /* Green color when selected */
 }
 
-/* Button styling */
+/* Submit button */
 .submit-button {
     padding: 15px;
-    background-color: #4caf50;
+    background-color: #a01e34;
     color: white;
     font-size: 18px;
     font-weight: bold;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
     text-align: center;
-    width: 100%; /* Ensure button takes full width */
+    width: 100%;
+    position: relative;
+}
+
+.submit-button::after {
+    content: "🚀";
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: slideRight 1.5s infinite;
 }
 
 /* Hover state for button */
 .submit-button:hover {
-    background-color: #45a049;
+    background-color: red;
     transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Focus effect for better accessibility */
+/* Focus state for button */
 .submit-button:focus {
-    outline: 2px solid #4caf50;
+    outline: 2px solid red;
     outline-offset: 2px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes slideRight {
+    0% {
+        transform: translateY(-50%) translateX(-5px);
+    }
+    50% {
+        transform: translateY(-50%) translateX(5px);
+    }
+    100% {
+        transform: translateY(-50%) translateX(-5px);
+    }
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .add-product-container {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .form-group {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .submit-button {
+        font-size: 16px;
+    }
 }

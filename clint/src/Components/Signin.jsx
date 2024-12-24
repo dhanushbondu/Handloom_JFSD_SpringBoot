@@ -22,7 +22,7 @@ function Signin() {
           localStorage.setItem("username", response.data);
           setUname("");
           setPwd("");
-          navigate("/signin/home");
+          navigate("/signin/users/home");
         }
       })
       .catch((error) => {

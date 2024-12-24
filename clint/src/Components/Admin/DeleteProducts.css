@@ -1,0 +1,120 @@
+/* Container for the delete product page */
+.delete-product-container {
+    margin-left: 250px; /* Match the width of the side navbar */
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  
+  /* Animated Title */
+  .delete-product-container h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #c3253f;
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  /* Form styling */
+  .delete-product-form {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    animation: slideUp 0.8s ease-in-out;
+  }
+  
+  .delete-product-form label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .delete-product-form input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .delete-product-form button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #c3253f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
+  }
+  
+  .delete-product-form button:hover {
+    background-color: #a01e34;
+    transform: scale(1.05); /* Slight zoom effect */
+  }
+  
+  .message {
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .message.success {
+    color: green;
+  }
+  
+  .message.error {
+    color: red;
+  }
+  
+  /* Keyframes for Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .delete-product-container {
+      margin-left: 0;
+      padding: 15px;
+    }
+  
+    .delete-product-form {
+      padding: 15px;
+    }
+  
+    .delete-product-form button {
+      font-size: 14px;
+    }
+  }
+  

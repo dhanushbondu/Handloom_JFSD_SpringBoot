@@ -18,6 +18,10 @@ npm install react-icons
 
 npm install chart.js react-chartjs-2
 
+npm install --save react-fontawesome
+
+npm install --save @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
+
 
 create  database <database name:  handloom> // to create the database name
 

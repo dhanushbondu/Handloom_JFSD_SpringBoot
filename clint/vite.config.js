@@ -7,6 +7,7 @@ export default defineConfig({
     proxy: {
       "/users": "http://localhost:2020", // Backend server for user-related routes
       "/products": "http://localhost:2020",
+      "/admin":"http://localhost:2020"
     },
   },
 });
