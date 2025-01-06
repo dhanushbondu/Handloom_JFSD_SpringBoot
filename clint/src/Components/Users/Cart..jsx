@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from "react";
 import Navbar from './Navbar';
 import axios from "axios";
-import './Cart.css'; // Ensure this imports the updated CSS
+import './Cart.css';
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const username = localStorage.getItem("username");
 
   useEffect(() => {
     if (username) {
-      fetchCartItems();  
+      fetchCartItems();
     } else {
       setError("Please log in to view your cart.");
     }
   }, [username]);
 
   const fetchCartItems = async () => {
+    setLoading(true);
+    setError("");
     try {
       const response = await axios.get("/cart/items", { params: { username } });
       if (response.data && response.data.length > 0) {
@@ -25,9 +28,12 @@ function Cart() {
         calculateTotalPrice(response.data);
       } else {
         setError("Your cart is empty.");
+        setCartItems([]);
       }
     } catch (err) {
       setError("Failed to load cart items. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -36,26 +42,57 @@ function Cart() {
     setTotalPrice(total);
   };
 
-  const handleQuantityChange = async (itemId, newQuantity) => {
-    if (newQuantity < 1) return;
-
+  const handleIncrement = async (itemId) => {
     try {
-      await axios.put("/cart/update", { id: itemId, quantity: newQuantity });
-      const updatedItems = cartItems.map((item) =>
-        item.id === itemId ? { ...item, quantity: newQuantity } : item
-      );
-      setCartItems(updatedItems);
-      calculateTotalPrice(updatedItems);
+        const response = await axios.put("/cart/increment", { 
+            username: username, 
+            id: itemId 
+        });
+        
+        if (response.status === 200) {
+            // Update the quantity in the UI
+            const updatedItems = cartItems.map((item) =>
+                item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+            );
+            setCartItems(updatedItems);
+            calculateTotalPrice(updatedItems);
+        } else {
+            setError("Failed to increment quantity. Please try again.");
+        }
     } catch (err) {
-      setError("Failed to update quantity. Please try again.");
+        setError("Failed to increment quantity. Please try again.");
     }
-  };
+};
+
+const handleDecrement = async (itemId) => {
+    try {
+        const response = await axios.put("/cart/decrement", { 
+            username: username, 
+            id: itemId 
+        });
+        
+        if (response.status === 200) {
+            // Update the quantity in the UI
+            const updatedItems = cartItems.map((item) =>
+                item.id === itemId ? { ...item, quantity: item.quantity - 1 } : item
+            );
+            setCartItems(updatedItems);
+            calculateTotalPrice(updatedItems);
+        } else {
+            setError("Failed to decrement quantity. Please try again.");
+        }
+    } catch (err) {
+        setError("Failed to decrement quantity. Please try again.");
+    }
+};
+
+
+
 
   const handleDelete = async (productId) => {
     try {
-      // Send both username and productId to delete the cart item
-      await axios.post(`/cart/delete`, { username, productId });
-      const updatedItems = cartItems.filter(item => item.id !== productId);
+      await axios.delete("/cart/delete", { params: { uname: username, productId } });
+      const updatedItems = cartItems.filter((item) => item.id !== productId);
       setCartItems(updatedItems);
       calculateTotalPrice(updatedItems);
       if (updatedItems.length === 0) {
@@ -74,8 +111,9 @@ function Cart() {
           <div className="cart-items-section">
             <h1>Your Cart</h1>
             {error && <p className="error-message">{error}</p>}
-
-            {cartItems.length === 0 ? (
+            {loading ? (
+              <p>Loading...</p>
+            ) : cartItems.length === 0 ? (
               <p>Your cart is empty.</p>
             ) : (
               <div>
@@ -87,23 +125,13 @@ function Cart() {
                         <h3>{item.name}</h3>
                         <p>₹{item.price}</p>
                         <div className="quantity-selector">
-                          <button
-                            onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
-                          >
-                            -
-                          </button>
+                          <button onClick={() => handleDecrement(item.id)}>-</button>
                           <input
                             type="number"
                             value={item.quantity}
-                            onChange={(e) =>
-                              handleQuantityChange(item.id, parseInt(e.target.value, 10))
-                            }
+                            readOnly
                           />
-                          <button
-                            onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
-                          >
-                            +
-                          </button>
+                          <button onClick={() => handleIncrement(item.id)}>+</button>
                         </div>
                         <button className="delete-button" onClick={() => handleDelete(item.id)}>
                           Delete
