@@ -1,8 +1,8 @@
-package com.klef.server.service;
+package com.klef.Server.service;
 
 import java.util.List;
 
-import com.klef.server.dto.ProductDTO;
+import com.klef.Server.dto.ProductDTO;
 
 public interface UserProductsService {
     List<ProductDTO> getAllProducts();

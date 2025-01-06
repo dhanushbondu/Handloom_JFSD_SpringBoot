@@ -1,4 +1,4 @@
-package com.klef.server.entity;
+package com.klef.Server.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

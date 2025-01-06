@@ -1,14 +1,15 @@
-package com.klef.server.controller;
+package com.klef.Server.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.klef.server.dto.DeleteCartItemRequest;
-import com.klef.server.entity.Cart;
-import com.klef.server.entity.Products;
-import com.klef.server.repo.ProductsRepo;
-import com.klef.server.service.CartService;
+
+import com.klef.Server.dto.DeleteCartItemRequest;
+import com.klef.Server.entity.Cart;
+import com.klef.Server.entity.Products;
+import com.klef.Server.repo.ProductsRepo;
+import com.klef.Server.service.CartService;
 
 @RestController
 @RequestMapping("/cart")
@@ -71,15 +72,69 @@ public class CartController {
             return ResponseEntity.status(500).body("Error updating cart item: " + e.getMessage());
         }
     }
-
-    // Delete cart item
-    @PostMapping("/delete")
-    public ResponseEntity<String> deleteCartItem(@RequestBody DeleteCartItemRequest request) {
+    @PutMapping("/increment")
+    public ResponseEntity<String> incrementQuantity(@RequestBody DeleteCartItemRequest request) {
         try {
-            cartService.deleteCartItemByUsernameAndProductId(request.getUsername(), request.getId());
-            return ResponseEntity.ok("Item deleted successfully.");
+            // Debugging log
+            System.out.println("Increment request: " + request.getUsername() + " Product ID: " + request.getId());
+            
+            // Retrieve the cart item
+            Cart cartItem = cartService.getCartByUnameAndId(request.getUsername(), request.getId());
+            if (cartItem == null) {
+                return ResponseEntity.status(404).body("Cart item not found.");
+            }
+
+            // Increment quantity
+            cartItem.setQuantity(cartItem.getQuantity() + 1);
+            cartService.updateCart(cartItem);  // Save the updated cart item
+
+            return ResponseEntity.ok("Quantity incremented successfully.");
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("Error: " + e.getMessage());
+            // Log the exception
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Error incrementing quantity: " + e.getMessage());
         }
     }
+
+
+    // Decrement quantity
+    @PutMapping("/decrement")
+    public ResponseEntity<String> decrementQuantity(@RequestBody DeleteCartItemRequest request) {
+        try {
+            // Retrieve the cart item by username and product ID
+            Cart cartItem = cartService.getCartByUnameAndId(request.getUsername(), request.getId());
+            if (cartItem == null) {
+                return ResponseEntity.status(404).body("Cart item not found.");
+            }
+
+            // Decrement the quantity, but ensure it doesn't go below 1
+            if (cartItem.getQuantity() > 1) {
+                cartItem.setQuantity(cartItem.getQuantity() - 1);
+                cartService.updateCart(cartItem);  // Save the updated cart item
+                return ResponseEntity.ok("Quantity decremented successfully.");
+            }
+            return ResponseEntity.status(400).body("Quantity cannot be less than 1.");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error decrementing quantity: " + e.getMessage());
+        }
+    }
+
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteCartItem(@RequestParam String uname, @RequestParam Long productId) {
+        try {
+            // Correct method to find cart item by username and productId
+            Cart existingCartItem = cartService.getCartByUnameAndId(uname, productId);
+            if (existingCartItem == null || !existingCartItem.getUname().equals(uname)) {
+                return ResponseEntity.status(404).body("Cart item not found");
+            }
+
+            // Proceed to delete the cart item
+            cartService.deleteCartItem(uname, productId);
+            return ResponseEntity.ok("Cart item deleted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error deleting cart item: " + e.getMessage());
+        }
+    }
+
 }

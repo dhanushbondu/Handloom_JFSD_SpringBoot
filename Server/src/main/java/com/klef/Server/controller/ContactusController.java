@@ -1,4 +1,4 @@
-package com.klef.server.controller;
+package com.klef.Server.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.klef.server.entity.Contactus;
-import com.klef.server.service.ContactusService;
+import com.klef.Server.entity.Contactus;
+import com.klef.Server.service.ContactusService;
 
 @RestController
 @RequestMapping("users")

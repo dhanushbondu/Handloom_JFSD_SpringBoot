@@ -1,72 +1,44 @@
-package com.klef.server.entity;
+package com.klef.Server.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "cart")
 public class Cart {
-    
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long sid;
     private Long id; // Product ID
-
-    private String uname; // Username of the user
+    private String uname; // Username
     private String name; // Product name
     private double price; // Product price
+    private int quantity; // Cart quantity
 
     @Lob
-    private byte[] img; // Product image (stored as blob)
-
-    private int quantity = 1; // Quantity of the product in the cart
+    private byte[] img; // Product image
 
     // Getters and Setters
-    public Long getId() {
-        return id;
-    }
+    public Long getSid() { return sid; }
+    public void setSid(Long sid) { this.sid = sid; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public String getUname() {
-        return uname;
-    }
+    public String getUname() { return uname; }
+    public void setUname(String uname) { this.uname = uname; }
 
-    public void setUname(String uname) {
-        this.uname = uname;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public String getName() {
-        return name;
-    }
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public byte[] getImg() { return img; }
+    public void setImg(byte[] img) { this.img = img; }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public byte[] getImg() {
-        return img;
-    }
-
-    public void setImg(byte[] img) {
-        this.img = img;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+    public int getQuantity() { return quantity; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
 }

@@ -1,10 +1,10 @@
-package com.klef.server.service;
+package com.klef.Server.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.klef.server.entity.Admin;
-import com.klef.server.repo.AdminRepo;
+import com.klef.Server.entity.Admin;
+import com.klef.Server.repo.AdminRepo;
 
 @Service
 public class AdminServiceLogic implements AdminService {

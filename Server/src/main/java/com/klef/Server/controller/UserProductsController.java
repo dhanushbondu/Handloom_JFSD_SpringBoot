@@ -1,4 +1,4 @@
-package com.klef.server.controller;
+package com.klef.Server.controller;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.klef.server.dto.ProductDTO;
-import com.klef.server.service.UserProductsService;
+import com.klef.Server.dto.ProductDTO;
+import com.klef.Server.service.UserProductsService;
 
 @RestController
 @RequestMapping("/users")

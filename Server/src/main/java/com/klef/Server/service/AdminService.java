@@ -1,6 +1,6 @@
-package com.klef.server.service;
+package com.klef.Server.service;
 
-import com.klef.server.entity.Admin;
+import com.klef.Server.entity.Admin;
 
 public interface AdminService {
 	public String addAdmin(Admin admin);

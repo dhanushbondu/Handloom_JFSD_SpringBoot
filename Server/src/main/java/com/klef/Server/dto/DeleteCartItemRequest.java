@@ -1,8 +1,8 @@
-package com.klef.server.dto;
+package com.klef.Server.dto;
 
 public class DeleteCartItemRequest {
-    private String username;  // Username field
-    private Long id;          // Product ID field
+    private String username;
+    private Long id;
 
     // Getters and Setters
     public String getUsername() {

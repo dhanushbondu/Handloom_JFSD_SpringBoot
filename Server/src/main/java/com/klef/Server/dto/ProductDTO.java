@@ -1,4 +1,4 @@
-package com.klef.server.dto;
+package com.klef.Server.dto;
 
 public class ProductDTO {
     private Long id;

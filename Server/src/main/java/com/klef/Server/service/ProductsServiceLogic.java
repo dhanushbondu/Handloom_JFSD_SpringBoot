@@ -1,4 +1,4 @@
-package com.klef.server.service;
+package com.klef.Server.service;
 
 import java.io.IOException;
 import java.util.Base64;
@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.klef.server.dto.ProductDTO;
-import com.klef.server.entity.Products;
-import com.klef.server.repo.ProductsRepo;
+import com.klef.Server.dto.ProductDTO;
+import com.klef.Server.entity.Products;
+import com.klef.Server.repo.ProductsRepo;
 
 @Service
 public class ProductsServiceLogic implements ProductsService {

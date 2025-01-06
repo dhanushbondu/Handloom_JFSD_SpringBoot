@@ -1,10 +1,10 @@
-package com.klef.server.service;
+package com.klef.Server.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.klef.server.entity.Contactus;
-import com.klef.server.repo.ContactusRepo;
+import com.klef.Server.entity.Contactus;
+import com.klef.Server.repo.ContactusRepo;
 
 @Service
 public class ContactusServiceLogic implements ContactusService {

@@ -1,18 +1,18 @@
-package com.klef.server.service;
+package com.klef.Server.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.klef.server.entity.Users;
-import com.klef.server.repo.UserRepo;
+import com.klef.Server.entity.Users;
+import com.klef.Server.repo.Userrepo;
 
 @Service
-public class UserServiceLogic implements UserService {
+public class Userservicelogic implements Userservice {
 
     @Autowired
-    private UserRepo userrepo;
+    private Userrepo userrepo;
 
 
     @Override

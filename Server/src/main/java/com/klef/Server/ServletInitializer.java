@@ -1,4 +1,4 @@
-package com.klef.server;
+package com.klef.Server;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

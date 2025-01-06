@@ -1,4 +1,4 @@
-package com.klef.server.service;
+package com.klef.Server.service;
 
 import java.util.Base64;
 import java.util.List;
@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.klef.server.dto.ProductDTO;
-import com.klef.server.repo.ProductsRepo;
+import com.klef.Server.dto.ProductDTO;
+import com.klef.Server.repo.ProductsRepo;
 
 @Service
 public class UserProductsServiceLogic implements UserProductsService {

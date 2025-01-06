@@ -1,4 +1,4 @@
-package com.klef.server.controller;
+package com.klef.Server.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,8 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.klef.server.dto.ProductDTO;
-import com.klef.server.service.ProductsService;
+import com.klef.Server.dto.ProductDTO;
+import com.klef.Server.service.ProductsService;
 
 @RestController
 @RequestMapping("/products")

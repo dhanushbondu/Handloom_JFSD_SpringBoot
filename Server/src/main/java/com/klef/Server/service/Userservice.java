@@ -1,10 +1,10 @@
-package com.klef.server.service;
+package com.klef.Server.service;
 
 import java.util.List;
 
-import com.klef.server.entity.Users;
+import com.klef.Server.entity.Users;
 
-public interface UserService {
+public interface Userservice {
     public String insertUser(Users user);  // Insert a new user
     public String checkUser(Users user, String uname, String pwd);  // Check login credentials
     public long getUserCount();  // Get total user count

@@ -1,14 +1,16 @@
-package com.klef.server.service;
+package com.klef.Server.service;
 
 import java.util.List;
 
-import com.klef.server.entity.Cart;
+import com.klef.Server.entity.Cart;
 
 public interface CartService {
     String addProductCart(Cart cart);
     List<Cart> getCartByUsername(String uname);
-    void updateCart(Cart cart);
     Cart getCartById(Long id);
-    void deleteCartItemById(Long id);
-    void deleteCartItemByUsernameAndProductId(String username, Long productId); // Method to delete by username and productId
+    void deleteCartItem(String uname, Long id);
+    Cart getCartByUnameAndId(String uname, Long id);
+    void updateCart(Cart cart);
+
+
 }

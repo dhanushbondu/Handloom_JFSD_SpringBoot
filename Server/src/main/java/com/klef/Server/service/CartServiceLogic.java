@@ -1,12 +1,12 @@
-package com.klef.server.service;
+package com.klef.Server.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.klef.server.entity.Cart;
-import com.klef.server.repo.CartRepo;
+import com.klef.Server.entity.Cart;
+import com.klef.Server.repo.CartRepo;
 
 @Service
 public class CartServiceLogic implements CartService {
@@ -43,21 +43,29 @@ public class CartServiceLogic implements CartService {
 
     @Override
     public void updateCart(Cart cart) {
-        cartRepo.save(cart);
+        cartRepo.save(cart);  // This will update the cart item in the database
     }
 
     @Override
     public Cart getCartById(Long id) {
         return cartRepo.findById(id).orElse(null);
     }
-
+    
     @Override
-    public void deleteCartItemById(Long id) {
-        cartRepo.deleteById(id);
+    @Transactional
+    public void deleteCartItem(String uname, Long id) {
+        Cart existingCartItem = cartRepo.findByUnameAndId(uname, id);
+        if (existingCartItem != null) {
+            cartRepo.deleteByUnameAndId(uname, id);  // This will delete the item from the cart
+        } else {
+            throw new RuntimeException("Cart item not found for username: " + uname + " and product ID: " + id);
+        }
     }
 
+    
     @Override
-    public void deleteCartItemByUsernameAndProductId(String username, Long productId) {
-        cartRepo.deleteByUnameAndId(username, productId);
+    public Cart getCartByUnameAndId(String uname, Long id) {
+        return cartRepo.findByUnameAndId(uname, id);
     }
+
 }

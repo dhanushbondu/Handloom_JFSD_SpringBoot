@@ -1,4 +1,4 @@
-package com.klef.server.controller;
+package com.klef.Server.controller;
 
 import java.util.*;
 import java.util.Map;
@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.klef.server.entity.Users;
-import com.klef.server.service.UserService;
+import com.klef.Server.entity.Users;
+import com.klef.Server.service.Userservice;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 	
 	@Autowired
-	private UserService userserice;
+	private Userservice userserice;
 	
 	@PostMapping("/insert-user")
 	public ResponseEntity<String> insertData(@RequestBody Users user) {

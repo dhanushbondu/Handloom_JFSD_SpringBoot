@@ -1,11 +1,11 @@
-package com.klef.server.repo;
+package com.klef.Server.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.klef.server.entity.Users;
+import com.klef.Server.entity.Users;
 
 @Repository
-public interface UserRepo extends JpaRepository<Users, String>{
+public interface Userrepo extends JpaRepository<Users, String>{
 	long countByGender(String gender);
 }

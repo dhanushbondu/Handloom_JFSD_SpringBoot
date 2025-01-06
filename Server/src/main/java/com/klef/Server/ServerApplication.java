@@ -1,4 +1,4 @@
-package com.klef.server;
+package com.klef.Server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

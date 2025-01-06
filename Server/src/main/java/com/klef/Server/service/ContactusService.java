@@ -1,6 +1,6 @@
-package com.klef.server.service;
+package com.klef.Server.service;
 
-import com.klef.server.entity.Contactus;
+import com.klef.Server.entity.Contactus;
 
 public interface ContactusService {
 	public String insertContactData(Contactus contactus);
