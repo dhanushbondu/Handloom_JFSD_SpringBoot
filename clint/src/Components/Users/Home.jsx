@@ -5,9 +5,10 @@ import "./Home.css";
 
 function Home() {
     const [products, setProducts] = useState([]);
-    const[id,setId]=useState();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [cart, setCart] = useState([]);
+    const username = localStorage.getItem("username");
 
     useEffect(() => {
         fetchProducts();
@@ -15,13 +16,45 @@ function Home() {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get("/products/all-products");
+            const response = await axios.get("/users/products/all");
             setProducts(response.data);
             setLoading(false);
         } catch (err) {
             console.error("Error fetching products:", err);
             setError("Failed to load products. Please try again later.");
             setLoading(false);
+        }
+    };
+
+    const handleAddToCart = async (product) => {
+        console.log("Adding to cart", { uname: username, productId: product.id }); 
+        if (username) {
+            try {
+                await axios.post("/cart/add", null, { params: { uname: username, productId: product.id } });
+                alert(`${product.name} added to cart!`);
+                fetchCart(); 
+            } catch (err) {
+                console.error("Error adding product to cart:", err);
+                alert("Failed to add product to cart.");
+            }
+        } else {
+            alert("Please log in to add items to the cart.");
+        }
+    };
+   
+
+    const handleBuyNow = (product) => {
+        alert(`Proceeding to checkout for ${product.name}`);
+    };
+
+    const fetchCart = async () => {
+        if (username) {
+            try {
+                const response = await axios.get("/cart/items", { params: { username } });
+                setCart(response.data);
+            } catch (err) {
+                console.error("Error fetching cart items:", err);
+            }
         }
     };
 
@@ -60,6 +93,21 @@ function Home() {
                             <p className="product-gender">
                                 Gender: {product.gender === "m" ? "Male" : "Female"}
                             </p>
+                            {/* Buy Now and Add to Cart Buttons */}
+                            <div className="product-buttons">
+                                <button
+                                    className="buy-now-button"
+                                    onClick={() => handleBuyNow(product)}
+                                >
+                                    Buy Now
+                                </button>
+                                <button
+                                    className="add-to-cart-button"
+                                    onClick={() => handleAddToCart(product)}
+                                >
+                                    Add to Cart
+                                </button>
+                            </div>
                         </div>
                     ))}
                 </div>

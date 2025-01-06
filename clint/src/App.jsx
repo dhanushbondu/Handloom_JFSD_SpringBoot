@@ -13,6 +13,8 @@ import Products from "./Components/Admin/Products";
 import AddProducts from "./Components/Admin/AddProducts";
 import ViewProducts from "./Components/Admin/ViewProducts";
 import DeleteProducts from "./Components/Admin/DeleteProducts";
+import Cart from "./Components/Users/Cart.";
+
 function App() {
   console.log("App is rendered");
   return (
@@ -22,6 +24,7 @@ function App() {
     <Route path="/contactus" element={<Contactus/>}/>    
     <Route path="/signup" element={<SignupForm/>}/>
     <Route path="/signin/users/home" element={<Home/>}/>
+    <Route path="/signin/users/cart" element={<Cart/>}/>
     <Route path="/aboutus" element={<Aboutus/>}/>
     <Route path="/signinadmin" element={<SigninAdmin/>}/>
     <Route path="/signinadmin/home" element={<AdminHome/>}/>

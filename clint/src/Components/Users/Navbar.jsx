@@ -14,12 +14,18 @@ function Navbar() {
                 <Link to="/signin/users/home">
                     🏠 Home
                 </Link>
-                <Link to="/aboutus">
-                    ℹ️ About Us
+
+                <Link to="/signin/users/cart">
+                    🛒 Cart
                 </Link>
+
                 <Link to="/contactus">
                     ✉️ Contact Us
                 </Link>
+                <Link to="/signin/users/about">
+                    ℹ️ About Us
+                </Link>
+                
                 <Link to="/">
                     🚪 Logout
                 </Link>

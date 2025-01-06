@@ -5,9 +5,10 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/users": "http://localhost:2020", // Backend server for user-related routes
+      "/users": "http://localhost:2020", 
       "/products": "http://localhost:2020",
-      "/admin":"http://localhost:2020"
+      "/admin":"http://localhost:2020",
+      "/cart":"http://localhost:2020"
     },
   },
 });
