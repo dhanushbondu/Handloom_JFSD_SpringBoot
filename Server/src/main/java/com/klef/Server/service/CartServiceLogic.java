@@ -67,5 +67,11 @@ public class CartServiceLogic implements CartService {
     public Cart getCartByUnameAndId(String uname, Long id) {
         return cartRepo.findByUnameAndId(uname, id);
     }
-
+    
+    public void updateOrderStatus(String uname, Long orderId, String status) {
+        Cart cart = cartRepo.findByUnameAndId(uname, orderId);
+        if (cart != null) {
+            cartRepo.save(cart);
+        }
+    }
 }
