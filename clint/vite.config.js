@@ -8,7 +8,9 @@ export default defineConfig({
       "/users": "http://localhost:2020", 
       "/products": "http://localhost:2020",
       "/admin":"http://localhost:2020",
-      "/cart":"http://localhost:2020"
+      "/cart":"http://localhost:2020",
+      "/payment":"http://localhost:2020",
+
     },
   },
 });

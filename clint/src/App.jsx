@@ -33,8 +33,6 @@ function App() {
     <Route path="/signinadmin/home/addproducts" element={<AddProducts/>}/>
     <Route path="/signinadmin/home/deleteproducts" element={<DeleteProducts/>}/>
     <Route path="/signinadmin/home/products/view" element={<ViewProducts/>}/>
-
-
     </Routes>
 
   );
