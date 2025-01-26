@@ -1,7 +1,7 @@
 import React from "react";
 import './Navbar.css';
 import { Link } from "react-router-dom";
-import { FaHome, FaSignOutAlt, FaBox, FaEye } from "react-icons/fa"; // Added FaEye for "View Products" icon
+import { FaHome, FaSignOutAlt, FaBox, FaEye, FaUser, FaCreditCard } from "react-icons/fa"; // Added FaCreditCard for "Payments" icon
 
 function Navbar() {
     const username = localStorage.getItem("username") || "Guest";
@@ -19,7 +19,13 @@ function Navbar() {
                     <FaBox className="icon" /> Products
                 </Link>
                 <Link to="/signinadmin/home/products/view">
-                    <FaEye className="icon" /> View Products {/* New "View Products" link */}
+                    <FaEye className="icon" /> View Products
+                </Link>
+                <Link to="/signinadmin/home/manageusers">
+                    <FaUser className="icon" /> Manage Users
+                </Link>
+                <Link to="/signinadmin/home/payments">
+                    <FaCreditCard className="icon" /> Payments {/* New "Payments" link */}
                 </Link>
                 <Link to="/">
                     <FaSignOutAlt className="icon" /> Logout

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "./Navbar1";
+import Navbar from "./Navbar";
 import axios from "axios";
 import "./ManageUsers.css";
 
@@ -40,46 +40,73 @@ function ManageUsers() {
             });
     };
 
+    // Function to download users data as CSV
+    const downloadAsCSV = () => {
+        const csvData = [
+            ["Username", "Email", "Password", "Gender"],
+            ...users.map((user) => [
+                user.uname,
+                user.email,
+                user.pwd,
+                user.gender,
+            ]),
+        ].map((row) => row.join(",")).join("\n");
+
+        const csvBlob = new Blob([csvData], { type: "text/csv" });
+        const csvUrl = URL.createObjectURL(csvBlob);
+        const csvLink = document.createElement("a");
+
+        csvLink.href = csvUrl;
+        csvLink.download = "users_data.csv";
+        csvLink.click();
+    };
+
     return (
         <div>
             <Navbar />
-            <div className="manage-users">
-                <h1>Manage Users</h1>
-                {loading ? (
-                    <p>Loading...</p>
-                ) : error ? (
-                    <p className="error">{error}</p>
-                ) : (
-                    <table className="users-table">
-                        <thead>
-                            <tr>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Password</th>
-                                <th>Gender</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {users.map((user, index) => (
-                                <tr key={index} className="fade-in">
-                                    <td>{user.uname}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.pwd}</td>
-                                    <td>{user.gender}</td>
-                                    <td>
-                                        <button
-                                            className="delete-button"
-                                            onClick={() => deleteUser(user.uname)}
-                                        >
-                                            Delete
-                                        </button>
-                                    </td>
+            <div className="main-content">
+                <div className="manage-users">
+                    <h1 className="d-inline-block">Manage Users</h1>
+                    <button className="btn btn-primary float-end" onClick={downloadAsCSV}>
+                        Download as CSV
+                    </button>
+                    <div className="clearfix"></div>
+                    {loading ? (
+                        <p>Loading...</p>
+                    ) : error ? (
+                        <p className="error">{error}</p>
+                    ) : (
+                        <table className="users-table mt-4">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Password</th>
+                                    <th>Gender</th>
+                                    <th>Actions</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                )}
+                            </thead>
+                            <tbody>
+                                {users.map((user, index) => (
+                                    <tr key={index} className="fade-in">
+                                        <td>{user.uname}</td>
+                                        <td>{user.email}</td>
+                                        <td>{user.pwd}</td>
+                                        <td>{user.gender}</td>
+                                        <td>
+                                            <button
+                                                className="delete-button"
+                                                onClick={() => deleteUser(user.uname)}
+                                            >
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    )}
+                </div>
             </div>
         </div>
     );

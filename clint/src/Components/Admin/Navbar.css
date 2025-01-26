@@ -67,11 +67,6 @@ body, html {
     font-size: 20px; /* Slightly larger icons */
 }
 
-/* Updated Icon for Products */
-.side-navbar .products-icon {
-    content: url('path/to/new/icon.svg'); /* Specify the new icon path */
-}
-
 /* User Info Styling */
 .side-navbar .user-info {
     margin-top: auto; /* Push user info to the bottom */

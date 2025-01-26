@@ -14,7 +14,8 @@ import AddProducts from "./Components/Admin/AddProducts";
 import ViewProducts from "./Components/Admin/ViewProducts";
 import DeleteProducts from "./Components/Admin/DeleteProducts";
 import Cart from "./Components/Users/Cart.";
-
+import Payments from "./Components/Users/Payments";
+import Payments1 from "./Components/Admin/Payments";
 function App() {
   console.log("App is rendered");
   return (
@@ -25,10 +26,12 @@ function App() {
     <Route path="/signup" element={<SignupForm/>}/>
     <Route path="/signin/users/home" element={<Home/>}/>
     <Route path="/signin/users/cart" element={<Cart/>}/>
+    <Route path="/signin/users/payments" element={<Payments/>}/>
     <Route path="/aboutus" element={<Aboutus/>}/>
     <Route path="/signinadmin" element={<SigninAdmin/>}/>
     <Route path="/signinadmin/home" element={<AdminHome/>}/>
     <Route path="/signinadmin/home/manageusers" element={<ManageUsers/>}/>
+    <Route path="/signinadmin/home/payments" element={<Payments1/>}/>
     <Route path="/signinadmin/home/products" element={<Products/>}/>
     <Route path="/signinadmin/home/addproducts" element={<AddProducts/>}/>
     <Route path="/signinadmin/home/deleteproducts" element={<DeleteProducts/>}/>
