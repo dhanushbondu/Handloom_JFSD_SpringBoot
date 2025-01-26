@@ -15,10 +15,9 @@ public class Payment {
     private String razorpayOrderId;
     private double amount;
     private String status;
-    private String uname; // Store the username
+    private String uname;
 
     // Getters and Setters
-
     public Long getId() {
         return id;
     }

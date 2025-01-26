@@ -1,12 +1,12 @@
 package com.klef.Server.service;
 
-import java.util.List;
-
+import com.klef.Server.entity.Cart;
+import com.klef.Server.repo.CartRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.klef.Server.entity.Cart;
-import com.klef.Server.repo.CartRepo;
+
+import java.util.List;
 
 @Service
 public class CartServiceLogic implements CartService {
@@ -43,35 +43,63 @@ public class CartServiceLogic implements CartService {
 
     @Override
     public void updateCart(Cart cart) {
-        cartRepo.save(cart);  // This will update the cart item in the database
+        cartRepo.save(cart);
     }
 
     @Override
     public Cart getCartById(Long id) {
         return cartRepo.findById(id).orElse(null);
     }
-    
+
     @Override
     @Transactional
     public void deleteCartItem(String uname, Long id) {
-        Cart existingCartItem = cartRepo.findByUnameAndId(uname, id);
-        if (existingCartItem != null) {
-            cartRepo.deleteByUnameAndId(uname, id);  // This will delete the item from the cart
-        } else {
-            throw new RuntimeException("Cart item not found for username: " + uname + " and product ID: " + id);
+        try {
+            // Retrieve the cart item
+            Cart existingCartItem = cartRepo.findByUnameAndId(uname, id);
+            
+            if (existingCartItem != null) {
+                System.out.println("Deleting Cart Item: " + existingCartItem);
+                cartRepo.deleteByUnameAndId(uname, id);
+            } else {
+                System.out.println("Cart item not found for username: " + uname + " and product ID: " + id);
+                throw new RuntimeException("Cart item not found for username: " + uname + " and product ID: " + id);
+            }
+        } catch (Exception e) {
+            System.out.println("Error while deleting cart item: " + e.getMessage());
+            throw e;
         }
     }
 
-    
     @Override
     public Cart getCartByUnameAndId(String uname, Long id) {
         return cartRepo.findByUnameAndId(uname, id);
     }
-    
+
     public void updateOrderStatus(String uname, Long orderId) {
         Cart cart = cartRepo.findByUnameAndId(uname, orderId);
         if (cart != null) {
             cartRepo.save(cart);
         }
     }
+    
+    @Override
+    @Transactional
+    public void deleteAllCartItems(String uname) {
+        try {
+            // Delete all cart items for the user
+            List<Cart> cartItems = cartRepo.findByUname(uname);
+            if (cartItems != null && !cartItems.isEmpty()) {
+                cartRepo.deleteAll(cartItems); 
+                System.out.println("All cart items for user " + uname + " have been deleted.");
+            } else {
+                System.out.println("No cart items found for user " + uname);
+            }
+        } catch (Exception e) {
+            System.out.println("Error while deleting all cart items: " + e.getMessage());
+            throw e;
+        }
+    }
+    
+    
 }

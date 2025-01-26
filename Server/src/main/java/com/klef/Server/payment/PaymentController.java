@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/payment")
 public class PaymentController {
@@ -19,7 +21,6 @@ public class PaymentController {
     @PostMapping("/create-order")
     public ResponseEntity<Payment> createOrder(@RequestBody PaymentRequest paymentRequest) {
         try {
-            // Pass the price from the request to create an order
             Payment payment = paymentService.createOrder(paymentRequest.getPrice(), paymentRequest.getUname());
             return ResponseEntity.ok(payment);
         } catch (Exception e) {
@@ -43,4 +44,24 @@ public class PaymentController {
             return ResponseEntity.status(500).body("Error verifying payment");
         }
     }
+
+    // New Endpoint to fetch all payments for a user by username
+    @GetMapping("/user-payments/{username}")
+    public ResponseEntity<List<Payment>> getPaymentsByUsername(@PathVariable("username") String username) {
+        try {
+            List<Payment> payments = paymentService.getPaymentsByUsername(username);
+            if (payments.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+            return ResponseEntity.ok(payments);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(null);
+        }
+    }
+    
+    @GetMapping("/get-all-payments")
+    public List<Payment> getAllPayments() {
+        return paymentService.getAllPayments();
+    }
+
 }

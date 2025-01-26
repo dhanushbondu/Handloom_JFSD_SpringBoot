@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
+import java.util.List;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
@@ -18,7 +19,6 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Value("${razorpay.key.secret}")
     private String razorpaySecret;
-   
 
     private final PaymentRepository paymentRepository;
 
@@ -27,31 +27,28 @@ public class PaymentServiceImpl implements PaymentService {
         this.paymentRepository = paymentRepository;
     }
 
-    // Create an order with Razorpay and store username along with price
     @Override
     public Payment createOrder(double price, String uname) throws Exception {
         RazorpayClient razorpayClient = new RazorpayClient(razorpayKey, razorpaySecret);
 
         JSONObject orderRequest = new JSONObject();
-        orderRequest.put("amount", price * 100); // Amount in paise (100 paise = 1 INR)
+        orderRequest.put("amount", price * 100); // Amount in paise
         orderRequest.put("currency", "INR");
         orderRequest.put("receipt", "txn_" + System.currentTimeMillis());
 
         // Create the order using Razorpay API
         Order order = razorpayClient.orders.create(orderRequest);
 
-        // Create a new Payment record with the username and price
+        // Save payment with order details
         Payment payment = new Payment();
         payment.setRazorpayOrderId(order.get("id"));
         payment.setAmount(price);
         payment.setStatus("CREATED");
-        payment.setUname(uname);  // Store the username
+        payment.setUname(uname);
 
-        // Save payment to the repository
         return paymentRepository.save(payment);
     }
 
-    // Verify the payment signature
     @Override
     public boolean verifySignature(String razorpayOrderId, String razorpayPaymentId, String razorpaySignature) throws Exception {
         String data = razorpayOrderId + "|" + razorpayPaymentId;
@@ -61,5 +58,15 @@ public class PaymentServiceImpl implements PaymentService {
         String generatedSignature = Base64.getEncoder().encodeToString(mac.doFinal(data.getBytes()));
 
         return generatedSignature.equals(razorpaySignature);
+    }
+
+    @Override
+    public List<Payment> getPaymentsByUsername(String username) throws Exception {
+        // Query the PaymentRepository to retrieve payments by username
+        return paymentRepository.findByUname(username);
+    }
+    
+    public List<Payment> getAllPayments() {
+        return paymentRepository.findAll();
     }
 }

@@ -72,45 +72,40 @@ public class CartController {
             return ResponseEntity.status(500).body("Error updating cart item: " + e.getMessage());
         }
     }
+
+    // Increment quantity
     @PutMapping("/increment")
     public ResponseEntity<String> incrementQuantity(@RequestBody DeleteCartItemRequest request) {
         try {
-            // Debugging log
             System.out.println("Increment request: " + request.getUsername() + " Product ID: " + request.getId());
             
-            // Retrieve the cart item
             Cart cartItem = cartService.getCartByUnameAndId(request.getUsername(), request.getId());
             if (cartItem == null) {
                 return ResponseEntity.status(404).body("Cart item not found.");
             }
 
-            // Increment quantity
             cartItem.setQuantity(cartItem.getQuantity() + 1);
-            cartService.updateCart(cartItem);  // Save the updated cart item
+            cartService.updateCart(cartItem);
 
             return ResponseEntity.ok("Quantity incremented successfully.");
         } catch (Exception e) {
-            // Log the exception
             e.printStackTrace();
             return ResponseEntity.status(500).body("Error incrementing quantity: " + e.getMessage());
         }
     }
 
-
     // Decrement quantity
     @PutMapping("/decrement")
     public ResponseEntity<String> decrementQuantity(@RequestBody DeleteCartItemRequest request) {
         try {
-            // Retrieve the cart item by username and product ID
             Cart cartItem = cartService.getCartByUnameAndId(request.getUsername(), request.getId());
             if (cartItem == null) {
                 return ResponseEntity.status(404).body("Cart item not found.");
             }
 
-            // Decrement the quantity, but ensure it doesn't go below 1
             if (cartItem.getQuantity() > 1) {
                 cartItem.setQuantity(cartItem.getQuantity() - 1);
-                cartService.updateCart(cartItem);  // Save the updated cart item
+                cartService.updateCart(cartItem);
                 return ResponseEntity.ok("Quantity decremented successfully.");
             }
             return ResponseEntity.status(400).body("Quantity cannot be less than 1.");
@@ -119,22 +114,19 @@ public class CartController {
         }
     }
 
-
+    // Delete cart item
     @DeleteMapping("/delete")
     public ResponseEntity<String> deleteCartItem(@RequestParam String uname, @RequestParam Long productId) {
         try {
-            // Correct method to find cart item by username and productId
-            Cart existingCartItem = cartService.getCartByUnameAndId(uname, productId);
-            if (existingCartItem == null || !existingCartItem.getUname().equals(uname)) {
-                return ResponseEntity.status(404).body("Cart item not found");
+            // Check if productId is 0, delete all items for the user
+            if (productId == 0) {
+                cartService.deleteAllCartItems(uname);
+            } else {
+                cartService.deleteCartItem(uname, productId);
             }
-
-            // Proceed to delete the cart item
-            cartService.deleteCartItem(uname, productId);
-            return ResponseEntity.ok("Cart item deleted successfully");
+            return ResponseEntity.ok("Cart item(s) deleted successfully");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Error deleting cart item: " + e.getMessage());
         }
     }
-
 }
