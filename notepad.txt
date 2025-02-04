@@ -16,6 +16,8 @@ npm install @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons @fo
 
 npm install react-icons
 
+npm install razorpay
+
 npm install chart.js react-chartjs-2
 
 npm install --save react-fontawesome
