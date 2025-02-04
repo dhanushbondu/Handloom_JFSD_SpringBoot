@@ -10,7 +10,6 @@ public interface CartService {
     Cart getCartById(Long id);
     void deleteCartItem(String uname, Long id);
     Cart getCartByUnameAndId(String uname, Long id);
-    
-    // New method to delete all cart items for a user
     void deleteAllCartItems(String uname);
+    public List<Cart> getCartByUsername1(String uname);
 }

@@ -11,6 +11,7 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sid;
+
     private Long id; // Product ID
     private String uname; // Username
     private String name; // Product name
@@ -19,6 +20,10 @@ public class Cart {
 
     @Lob
     private byte[] img; // Product image
+
+    private String razorpayOrderId; // Razorpay Order ID (for payment association)
+    private String paymentStatus; // Payment status (e.g., "created", "paid")
+    private String productIds; // Comma-separated list of product IDs
 
     // Getters and Setters
     public Long getSid() { return sid; }
@@ -42,5 +47,12 @@ public class Cart {
     public int getQuantity() { return quantity; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
 
+    public String getRazorpayOrderId() { return razorpayOrderId; }
+    public void setRazorpayOrderId(String razorpayOrderId) { this.razorpayOrderId = razorpayOrderId; }
 
+    public String getPaymentStatus() { return paymentStatus; }
+    public void setPaymentStatus(String paymentStatus) { this.paymentStatus = paymentStatus; }
+
+    public String getProductIds() { return productIds; }
+    public void setProductIds(String productIds) { this.productIds = productIds; }
 }

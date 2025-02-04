@@ -1,67 +1,64 @@
 package com.klef.Server.payment;
 
+import java.util.List;
+import java.util.Map;
+
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/payment")
+@CrossOrigin(origins = "*")
 public class PaymentController {
 
-    private final PaymentService paymentService;
-
     @Autowired
-    public PaymentController(PaymentService paymentService) {
-        this.paymentService = paymentService;
-    }
+    private PaymentService paymentService;
 
-    // Endpoint to create an order
+    // Create a Razorpay order for multiple products
     @PostMapping("/create-order")
-    public ResponseEntity<Payment> createOrder(@RequestBody PaymentRequest paymentRequest) {
+    public ResponseEntity<?> createOrder(@RequestBody OrderRequest orderRequest) {
         try {
-            Payment payment = paymentService.createOrder(paymentRequest.getPrice(), paymentRequest.getUname());
-            return ResponseEntity.ok(payment);
+            JSONObject order = paymentService.createOrder(orderRequest);
+            return ResponseEntity.ok(order.toString());
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(null);
+            return ResponseEntity.status(500).body("Error creating order: " + e.getMessage());
         }
     }
 
-    // Endpoint to verify payment signature
-    @PostMapping("/verify-signature")
-    public ResponseEntity<String> verifySignature(@RequestParam("razorpayOrderId") String razorpayOrderId,
-                                                  @RequestParam("razorpayPaymentId") String razorpayPaymentId,
-                                                  @RequestParam("razorpaySignature") String razorpaySignature) {
-        try {
-            boolean isSignatureValid = paymentService.verifySignature(razorpayOrderId, razorpayPaymentId, razorpaySignature);
-            if (isSignatureValid) {
-                return ResponseEntity.ok("Payment Verified");
-            } else {
-                return ResponseEntity.status(400).body("Invalid Signature");
-            }
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("Error verifying payment");
-        }
-    }
+    // Verify payment after success
+    @PostMapping("/verify")
+    public ResponseEntity<?> verifyPayment(@RequestBody Map<String, String> paymentData) {
+        String razorpayOrderId = paymentData.get("razorpayOrderId");
+        String razorpayPaymentId = paymentData.get("razorpayPaymentId");
+        String razorpaySignature = paymentData.get("razorpaySignature");
 
-    // New Endpoint to fetch all payments for a user by username
-    @GetMapping("/user-payments/{username}")
-    public ResponseEntity<List<Payment>> getPaymentsByUsername(@PathVariable("username") String username) {
-        try {
-            List<Payment> payments = paymentService.getPaymentsByUsername(username);
-            if (payments.isEmpty()) {
-                return ResponseEntity.noContent().build();
-            }
-            return ResponseEntity.ok(payments);
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body(null);
+        System.out.println("Received Payment Details: ");
+        System.out.println("Order ID: " + razorpayOrderId);
+        System.out.println("Payment ID: " + razorpayPaymentId);
+        System.out.println("Signature: " + razorpaySignature);
+
+        if (razorpayOrderId == null || razorpayPaymentId == null || razorpaySignature == null) {
+            return ResponseEntity.status(400).body("Missing payment details from Razorpay.");
         }
+
+        String response = paymentService.verifyPayment(razorpayOrderId, razorpayPaymentId, razorpaySignature);
+        return response.equals("Payment Successful") ? ResponseEntity.ok(response) : ResponseEntity.status(400).body(response);
     }
     
-    @GetMapping("/get-all-payments")
-    public List<Payment> getAllPayments() {
-        return paymentService.getAllPayments();
+    @GetMapping("/get-payment-details/{uname}")
+    public ResponseEntity<List<PaymentDetailsDTO>> getPaymentDetailsByUsername(@PathVariable String uname) {
+        try {
+            List<PaymentDetailsDTO> paymentDetails = paymentService.getPaymentDetailsByUsername(uname);
+            if (paymentDetails.isEmpty()) {
+                return ResponseEntity.status(404).body(null);  // No records found
+            }
+            return ResponseEntity.ok(paymentDetails);  // Return the list of payment details
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(null);  // Error while fetching data
+        }
     }
 
 }

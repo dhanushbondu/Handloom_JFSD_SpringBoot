@@ -100,6 +100,11 @@ public class CartServiceLogic implements CartService {
             throw e;
         }
     }
+
+	@Override
+	public List<Cart> getCartByUsername1(String uname) {
+		 return cartRepo.findByUname(uname);
+	}
     
     
 }
