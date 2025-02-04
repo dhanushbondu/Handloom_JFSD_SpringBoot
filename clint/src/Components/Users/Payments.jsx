@@ -8,13 +8,12 @@ function Payments() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Get the username from localStorage
         const username = localStorage.getItem('username');
 
         // Fetch payment data from the backend
         const fetchPayments = async () => {
             try {
-                const response = await fetch(`/payment/user-payments/${username}`);
+                const response = await fetch(`/payment/get-payment-details/${username}`);
 
                 // Check if response is valid and JSON is expected
                 if (!response.ok) {
@@ -43,12 +42,12 @@ function Payments() {
     // Function to download payments data as CSV
     const downloadAsCSV = () => {
         const csvData = [
-            ["Razorpay Order ID", "Amount", "Status", "Username"],
+            ["Razorpay Order ID", "Product ID", "Product Name", "Amount"],
             ...payments.map((payment) => [
                 payment.razorpayOrderId,
+                payment.productId,
+                payment.productName,
                 payment.amount,
-                payment.status,
-                payment.uname,
             ]),
         ].map((row) => row.join(",")).join("\n");
 
@@ -75,13 +74,25 @@ function Payments() {
                         <thead>
                             <tr>
                                 <th>Razorpay Order ID</th>
+                                <th>Product ID</th>
+                                <th>Product Name</th>
                                 <th>Amount</th>
-                                <th>Status</th>
-                                <th>Username</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {payments.length === 0 ? (
+                            {loading ? (
+                                <tr>
+                                    <td colSpan="4" className="text-center">
+                                        Loading...
+                                    </td>
+                                </tr>
+                            ) : error ? (
+                                <tr>
+                                    <td colSpan="4" className="text-center">
+                                        Error: {error}
+                                    </td>
+                                </tr>
+                            ) : payments.length === 0 ? (
                                 <tr>
                                     <td colSpan="4" className="text-center">
                                         No payments found for this user.
@@ -89,11 +100,11 @@ function Payments() {
                                 </tr>
                             ) : (
                                 payments.map((payment) => (
-                                    <tr key={payment.id}>
+                                    <tr key={payment.razorpayOrderId}>
                                         <td>{payment.razorpayOrderId}</td>
+                                        <td>{payment.productId}</td>
+                                        <td>{payment.productName}</td>
                                         <td>{payment.amount}</td>
-                                        <td>{payment.status}</td>
-                                        <td>{payment.uname}</td>
                                     </tr>
                                 ))
                             )}
