@@ -62,4 +62,44 @@ public class ProductsServiceLogic implements ProductsService {
     public Long getProductCount() {
         return productsrepo.count();
     }
+    
+    @Override
+    public Long getProductCountSeller(String sellerName) {
+        if (sellerName != null && !sellerName.isEmpty()) {
+            return productsrepo.countBySellerName(sellerName);
+        }
+        return 0L;
+    }
+    @Override
+    public String updateProductPrice(Long productId, double newPrice) {
+        try {
+            Products product = productsrepo.findById(productId).orElse(null);
+            if (product != null) {
+                product.setPrice(newPrice);
+                productsrepo.save(product);
+                return "Product price updated successfully!";
+            } else {
+                return "Product not found!";
+            }
+        } catch (Exception e) {
+            return "Failed to update product price: " + e.getMessage();
+        }
+    }
+    
+    @Override
+    public List<ProductDTO> getProductsBySellerName(String sellerName) {
+        return productsrepo.findBySellerName(sellerName).stream().map(product -> {
+            ProductDTO dto = new ProductDTO();
+            dto.setId(product.getId());
+            dto.setName(product.getName());
+            dto.setDiscription(product.getDiscription());
+            dto.setPrice(product.getPrice());
+            dto.setGender(product.getGender());
+            dto.setSellerName(product.getSellerName());
+            dto.setImg(Base64.getEncoder().encodeToString(product.getImg()));
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+
 }

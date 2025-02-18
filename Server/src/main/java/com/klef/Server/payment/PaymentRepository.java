@@ -13,4 +13,7 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
     @Query("SELECT new com.klef.Server.payment.PaymentDetailsDTO(p.productId, p.productName, p.amount, p.razorpayOrderId) " +
             "FROM Payment p WHERE p.uname = :uname")
      List<PaymentDetailsDTO> findPaymentDetailsByUname(String uname);
+    @Query("SELECT new com.klef.Server.payment.PaymentDetailsDTO(p.productId, p.productName, p.amount, p.razorpayOrderId, p.uname) " +
+            "FROM Payment p")
+    List<PaymentDetailsDTO> findAllPaymentDetails();
 }

@@ -13,8 +13,8 @@ public class Payment {
     private Long productId;
     private String productName;
     private double amount;
-    private String status; // created, paid, failed
-    private String uname; // Add username field here
+    private String status;
+    private String uname; 
     private String sellerName;
     
     public String getSellerName() {

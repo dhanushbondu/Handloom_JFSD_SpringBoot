@@ -18,7 +18,6 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
 
-    // Create a Razorpay order for multiple products
     @PostMapping("/create-order")
     public ResponseEntity<?> createOrder(@RequestBody OrderRequest orderRequest) {
         try {
@@ -53,6 +52,20 @@ public class PaymentController {
     public ResponseEntity<List<PaymentDetailsDTO>> getPaymentDetailsByUsername(@PathVariable String uname) {
         try {
             List<PaymentDetailsDTO> paymentDetails = paymentService.getPaymentDetailsByUsername(uname);
+            if (paymentDetails.isEmpty()) {
+                return ResponseEntity.status(404).body(null);  // No records found
+            }
+            return ResponseEntity.ok(paymentDetails);  // Return the list of payment details
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(null);  // Error while fetching data
+        }
+    }
+    
+    @GetMapping("/get-all-payments")
+    public ResponseEntity<List<PaymentDetailsDTO>> getAllPaymentDetails() {
+        try {
+            // Fetch all payment details
+            List<PaymentDetailsDTO> paymentDetails = paymentService.getAllPaymentDetails();
             if (paymentDetails.isEmpty()) {
                 return ResponseEntity.status(404).body(null);  // No records found
             }

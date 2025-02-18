@@ -89,5 +89,9 @@ public class PaymentService {
     }                                                                                                                        
     public List<PaymentDetailsDTO> getPaymentDetailsByUsername(String uname) {                                               
         return paymentRepository.findPaymentDetailsByUname(uname);  // Fetch data using custom query                         
-    }                                                                                                                        
+    }    
+    
+    public List<PaymentDetailsDTO> getAllPaymentDetails() {
+        return paymentRepository.findAllPaymentDetails(); 
+    }
 } 

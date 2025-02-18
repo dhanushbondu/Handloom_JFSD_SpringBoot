@@ -13,6 +13,7 @@ import com.klef.Server.service.ProductsService;
 
 @RestController
 @RequestMapping("/products")
+@CrossOrigin(origins = "*") // Enable CORS for frontend requests
 public class ProductsController {
 
     @Autowired
@@ -38,7 +39,7 @@ public class ProductsController {
     public List<ProductDTO> getAllProducts() {
         return productsservice.getAllProducts();
     }
-
+    
     @GetMapping("/product-count")
     public long getProductCount() {
     	return productsservice.getProductCount();
@@ -48,6 +49,30 @@ public class ProductsController {
     public void deleteProduct(@PathVariable("id") long id) {
         productsservice.deleteProducts(id);
     }
+    
+    @GetMapping("/product-Scount/{sellerName}")
+    public ResponseEntity<Long> getProductCountBySeller(@PathVariable String sellerName) {
+    	long count = productsservice.getProductCountSeller(sellerName);
+        return ResponseEntity.ok(count);
+    }
+
+    @PutMapping("/update-product-price/{id}")
+    public ResponseEntity<String> updateProductPrice(
+            @PathVariable("id") Long id,
+            @RequestParam("price") double price) {
+        try {
+            String result = productsservice.updateProductPrice(id, price);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Failed to update price: " + e.getMessage());
+        }
+    }
+    
+    @GetMapping("/products-by-seller/{sellerName}")
+    public List<ProductDTO> getProductsBySellerName(@PathVariable String sellerName) {
+        return productsservice.getProductsBySellerName(sellerName);
+    }
+
 
     
 }
