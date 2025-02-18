@@ -11,6 +11,7 @@ function AddProducts() {
     const [productPrice, setProductPrice] = useState("");
     const [productImage, setProductImage] = useState(null);
     const [gender, setGender] = useState("");
+    const username = localStorage.getItem('username');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,6 +22,7 @@ function AddProducts() {
         formData.append("discription", productDescription);
         formData.append("price", productPrice);
         formData.append("gender", gender);
+        formData.append("sellerName", username);
 
         try {
             const response = await axios.post("/products/add-products", formData, {

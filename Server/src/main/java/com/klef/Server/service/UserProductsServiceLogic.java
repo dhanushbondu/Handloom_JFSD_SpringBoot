@@ -25,7 +25,7 @@ public class UserProductsServiceLogic implements UserProductsService {
             dto.setDiscription(product.getDiscription());
             dto.setPrice(product.getPrice());
             dto.setGender(product.getGender());
-
+            dto.setSellerName(product.getSellerName());
             String encodedImg = Base64.getEncoder().encodeToString(product.getImg());
             dto.setImg(encodedImg);
             

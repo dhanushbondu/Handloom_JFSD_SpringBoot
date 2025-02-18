@@ -1,0 +1,55 @@
+/* Contact Form Container */
+.contact-container {
+    margin-left: 260px; /* Adjusting space to the right of sidenav */
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+/* Form Box */
+.form-box {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+/* Form Input Fields */
+.form-box input,
+.form-box textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Submit Button */
+.form-box button {
+    width: 100%;
+    padding: 10px;
+    background-color: #c3253f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.form-box button:hover {
+    background-color: #a81f36;
+}
+
+/* Success/Error Message */
+.form-result {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: green;
+}

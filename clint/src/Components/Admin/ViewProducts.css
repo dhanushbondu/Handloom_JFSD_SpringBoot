@@ -1,28 +1,28 @@
 /* View Products Page */
 .view-products-container {
-    margin-left: 250px; /* Match the width of the side navbar */
+    margin-left: 250px;
     padding: 20px;
     background-color: #f9f9f9;
     min-height: 100vh;
     box-sizing: border-box;
-    transition: margin-left 0.3s ease-in-out; /* Smooth transition for responsiveness */
+    transition: margin-left 0.3s ease-in-out;
 }
 
 .view-products-container h1 {
     margin-bottom: 20px;
     font-size: 28px;
     font-weight: bold;
-    color: #c3253f; /* Matching navbar color for accent */
+    color: #c3253f;
     text-align: center;
 }
 
 /* Products Grid */
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjust for smaller product cards */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 40px;
     padding: 10px;
-    margin-top: 20px; /* Adds spacing below the title */
+    margin-top: 20px;
 }
 
 /* Product Card */
@@ -35,12 +35,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
+    text-align: left;
     transition: transform 0.3s, box-shadow 0.3s;
     word-wrap: break-word;
-    overflow: hidden; /* Ensures content doesn't overflow the card */
-    width: 100%; /* Ensure consistent sizing within the grid */
-    max-width: 300px; /* Optional: limit the maximum width */
+    overflow: hidden;
+    width: 100%;
+    max-width: 300px;
 }
 
 .product-card:hover {
@@ -54,49 +54,44 @@
     height: 180px;
     object-fit: cover;
     border-radius: 8px;
-    margin-bottom: 15px; /* Space between image and details */
+    margin-bottom: 10px;
 }
 
-/* Product Name */
+/* Product Details - Aligned Left */
+.product-details {
+    width: 100%;
+    padding: 10px;
+}
+
 .product-name {
-    align-self: flex-start; /* Align to the start of the card */
-    margin: 10px 0;
     font-size: 18px;
     font-weight: bold;
     color: #333;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-align: left; /* Align text to the left */
-    width: 100%; /* Ensure it spans the card width */
-    padding-left: 5px; /* Add a small left padding for spacing */
 }
 
-.product-description {
+.product-id, 
+.product-description, 
+.product-price, 
+.product-gender, 
+.product-seller {
     font-size: 14px;
     color: #555;
-    margin-bottom: 10px;
-    line-height: 1.4;
-    max-height: 3em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.product-price, .product-gender {
-    font-size: 14px;
-    color: #444;
-    margin-bottom: 5px; /* Space between each detail */
+    margin-bottom: 5px;
+    text-align: left;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .view-products-container {
-        margin-left: 0; /* Remove margin when sidebar collapses */
+        margin-left: 0;
         padding: 15px;
     }
 
     .products-grid {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjusted for smaller screens */
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         gap: 15px;
     }
 
@@ -105,25 +100,18 @@
     }
 
     .product-image {
-        height: 150px; /* Reduced height for mobile */
+        height: 150px;
     }
 
     .product-name {
         font-size: 16px;
     }
 
-    .product-description, .product-price, .product-gender {
+    .product-id, 
+    .product-description, 
+    .product-price, 
+    .product-gender, 
+    .product-seller {
         font-size: 12px;
     }
-}
-
-/* Accessibility */
-.view-products-container h1:focus {
-    outline: 2px dashed #c3253f;
-    outline-offset: 4px;
-}
-
-.product-card:focus {
-    outline: 2px dashed #c3253f;
-    outline-offset: 4px;
 }

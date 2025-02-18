@@ -2,8 +2,8 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
-			<item value="A:\Handloom_JFSD_SpringBoot\server"/>
 			<item value="A:\Handloom_JFSD_SpringBoot\Server"/>
+			<item value="A:\Handloom_JFSD_SpringBoot\server"/>
 			<item value="A:\JFSD_project\OLD\SpringProject"/>
 			<item value="A:\JFSD_project\OLD\Server"/>
 			<item value="A:\JFSD_project\server"/>

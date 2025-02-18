@@ -4,11 +4,9 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.klef.Server.dto.ProductDTO;
 import com.klef.Server.entity.Products;
 import com.klef.Server.repo.ProductsRepo;
@@ -20,14 +18,14 @@ public class ProductsServiceLogic implements ProductsService {
     private ProductsRepo productsrepo;
 
     @Override
-    public String addProducts(MultipartFile file, String name, String discription, double price, char gender)
-            throws IOException {
+    public String addProducts(MultipartFile file, String name, String discription, double price, char gender, String sellerName) throws IOException {
         try {
             Products p = new Products();
             p.setName(name);
             p.setDiscription(discription);
             p.setPrice(price);
             p.setGender(gender);
+            p.setSellerName(sellerName);
             p.setImg(file.getBytes());
             productsrepo.save(p);
             return "Product added successfully!";
@@ -45,7 +43,8 @@ public class ProductsServiceLogic implements ProductsService {
             dto.setDiscription(product.getDiscription());
             dto.setPrice(product.getPrice());
             dto.setGender(product.getGender());
-            dto.setImg(Base64.getEncoder().encodeToString(product.getImg())); // Encode image
+            dto.setSellerName(product.getSellerName());
+            dto.setImg(Base64.getEncoder().encodeToString(product.getImg()));
             return dto;
         }).collect(Collectors.toList());
     }
@@ -53,14 +52,14 @@ public class ProductsServiceLogic implements ProductsService {
     @Override
     public String deleteProducts(long id) {
         if (productsrepo.existsById(id)) {
-            productsrepo.deleteById(id); 
+            productsrepo.deleteById(id);
             return "Product deleted successfully.";
         }
         return "Product does not exist.";
     }
 
-	@Override
-	public Long getProductCount() {
-		return (productsrepo.count());
-	}
+    @Override
+    public Long getProductCount() {
+        return productsrepo.count();
+    }
 }

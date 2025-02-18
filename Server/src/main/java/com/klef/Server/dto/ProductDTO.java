@@ -6,9 +6,9 @@ public class ProductDTO {
     private String discription;
     private double price;
     private char gender;
+    private String sellerName;
     private String img;
 
-    // Getters and setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -23,6 +23,9 @@ public class ProductDTO {
 
     public char getGender() { return gender; }
     public void setGender(char gender) { this.gender = gender; }
+
+    public String getSellerName() { return sellerName; }
+    public void setSellerName(String sellerName) { this.sellerName = sellerName; }
 
     public String getImg() { return img; }
     public void setImg(String img) { this.img = img; }

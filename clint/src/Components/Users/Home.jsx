@@ -93,6 +93,7 @@ function Home() {
                             <p className="product-gender">
                                 Gender: {product.gender === "m" ? "Male" : "Female"}
                             </p>
+                            <p className="product-seller">Seller: {product.sellerName}</p>
                             {/* Buy Now and Add to Cart Buttons */}
                             <div className="product-buttons">
                                 <button

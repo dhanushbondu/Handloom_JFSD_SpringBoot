@@ -1,3 +1,4 @@
+
 package com.klef.Server.payment;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class PaymentController {
     public ResponseEntity<?> createOrder(@RequestBody OrderRequest orderRequest) {
         try {
             JSONObject order = paymentService.createOrder(orderRequest);
-            return ResponseEntity.ok(order.toString());
+            return ResponseEntity.ok(order);
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Error creating order: " + e.getMessage());
         }

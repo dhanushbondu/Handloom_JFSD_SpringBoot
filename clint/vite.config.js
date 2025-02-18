@@ -10,7 +10,7 @@ export default defineConfig({
       "/admin":"http://localhost:2020",
       "/cart":"http://localhost:2020",
       "/payment":"http://localhost:2020",
-
+      "/seller": "http://localhost:2020",
     },
   },
 });

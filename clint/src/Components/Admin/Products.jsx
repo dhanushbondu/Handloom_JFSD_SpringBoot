@@ -12,11 +12,11 @@ function Products() {
     };
 
     const deleteProduct = () => {
-        navigate("/signinadmin/home/deleteproducts"); // Update with actual route
+        navigate("/signinadmin/home/deleteproducts"); 
     };
 
     const updateProduct = () => {
-        navigate("/signinadmin/home/updateproducts"); // Update with actual route
+        navigate("/signinadmin/home/updateproducts"); 
     };
 
     return (

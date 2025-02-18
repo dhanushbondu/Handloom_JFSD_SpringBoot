@@ -15,8 +15,15 @@ public class Payment {
     private double amount;
     private String status; // created, paid, failed
     private String uname; // Add username field here
-
-    // Getters and Setters
+    private String sellerName;
+    
+    public String getSellerName() {
+		return sellerName;
+	}
+	public void setSellerName(String sellerName) {
+		this.sellerName = sellerName;
+	}
+	// Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

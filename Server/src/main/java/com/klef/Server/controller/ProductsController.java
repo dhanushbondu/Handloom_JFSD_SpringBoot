@@ -24,9 +24,10 @@ public class ProductsController {
             @RequestParam("name") String name,
             @RequestParam("discription") String discription,
             @RequestParam("price") double price,
-            @RequestParam("gender") char gender) {
+            @RequestParam("gender") char gender,
+            @RequestParam("sellerName") String sellerName) {
         try {
-            String result = productsservice.addProducts(file, name, discription, price, gender);
+            String result = productsservice.addProducts(file, name, discription, price, gender, sellerName);
             return ResponseEntity.ok(result);
         } catch (IOException e) {
             return ResponseEntity.status(500).body("Failed to add product: " + e.getMessage());

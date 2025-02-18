@@ -8,7 +8,7 @@ function Navbar() {
     return (
         <div className="sidenav">
             <div className="logo">
-                <Link to="/">Dhanush Bondu's</Link>
+                <Link to="">Handloom Fashion</Link>
             </div>
             <div className="nav-links">
                 <Link to="/signin/users/home">
@@ -21,7 +21,9 @@ function Navbar() {
                 <Link to="/signin/users/payments">
                 💳  Payment's
                 </Link>
-                
+                <Link to="/signin/user/home/contactAdmin">
+                📞 Contact Admin
+                </Link>
                 <Link to="/">
                     🚪 Logout
                 </Link>

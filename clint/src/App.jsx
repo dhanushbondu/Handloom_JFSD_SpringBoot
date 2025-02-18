@@ -16,6 +16,14 @@ import DeleteProducts from "./Components/Admin/DeleteProducts";
 import Cart from "./Components/Users/Cart.";
 import Payments from "./Components/Users/Payments";
 import Payments1 from "./Components/Admin/Payments";
+import ContactAdmin from "./Components/Users/ContactAdmin";
+import SellerSignin from "./Components/SellerSignin";
+import SellerSingup from './Components/SellerSignup';
+import SellerHome from "./Components/seller/SellerHome";
+import SellerProducts from "./Components/seller/SellerProducts";
+import SellerAddProduct from "./Components/seller/SellerAddProduct";
+import SellerDeleteProduct from "./Components/seller/SellerDeleteProduct";
+import SellerProductView from "./Components/seller/SellerProductView";
 function App() {
   console.log("App is rendered");
   return (
@@ -27,6 +35,7 @@ function App() {
     <Route path="/signin/users/home" element={<Home/>}/>
     <Route path="/signin/users/cart" element={<Cart/>}/>
     <Route path="/signin/users/payments" element={<Payments/>}/>
+    <Route path="/signin/user/home/contactAdmin" element={<ContactAdmin/>}/>
     <Route path="/aboutus" element={<Aboutus/>}/>
     <Route path="/signinadmin" element={<SigninAdmin/>}/>
     <Route path="/signinadmin/home" element={<AdminHome/>}/>
@@ -36,6 +45,13 @@ function App() {
     <Route path="/signinadmin/home/addproducts" element={<AddProducts/>}/>
     <Route path="/signinadmin/home/deleteproducts" element={<DeleteProducts/>}/>
     <Route path="/signinadmin/home/products/view" element={<ViewProducts/>}/>
+    <Route path="/signinseller" element={ <SellerSignin/>} />
+    <Route path="/signupseller" element={ <SellerSingup/>} />
+    <Route path="/seller/home" element={<SellerHome/>}/>
+    <Route path="/seller/home/products" element={<SellerProducts/>}/>
+    <Route path="/seller/home/addproducts" element={<SellerAddProduct/>}/>
+    <Route path="/seller/home/deleteproducts" element={<SellerDeleteProduct/>}/>
+    <Route path="/seller/home/products/view" element={<SellerProductView/>}/>
     </Routes>
 
   );

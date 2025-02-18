@@ -1,0 +1,97 @@
+/* Reset styles for consistent design */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Main Admin Dashboard layout */
+.admin-dashboard {
+    display: flex;
+}
+
+/* Content adjustment for navbar */
+.dashboard-content {
+    margin-left: 250px; /* Matches the sidebar width */
+    padding: 20px;
+    width: calc(100% - 250px); /* Adjust width dynamically */
+    background-color: #f4f4f4;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Header styling */
+.dashboard-content h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Cards for statistics */
+.stats-cards {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.card {
+    flex: 1;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.card h3 {
+    margin: 0;
+    color: #c3253f;
+}
+
+.card p {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0 0;
+    color: #444;
+}
+
+/* Charts section */
+.charts {
+    display: flex;
+    gap: 20px;
+}
+
+.chart-box {
+    flex: 1;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.chart-box h3 {
+    margin: 0;
+    color: #c3253f;
+    margin-bottom: 15px;
+}
+
+/* Error message styling */
+.error {
+    color: red;
+    font-size: 14px;
+}
+
+
+
+/* Button styling */
+.action-button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #c3253f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+   
+}

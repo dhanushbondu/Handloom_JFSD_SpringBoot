@@ -5,9 +5,9 @@ import "./ViewProducts.css";
 
 function ViewProducts() {
     const [products, setProducts] = useState([]);
-    const[id,setId]=useState();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const username = localStorage.getItem('username');
 
     useEffect(() => {
         fetchProducts();
@@ -15,7 +15,7 @@ function ViewProducts() {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get("/products/all-products"); // Ensure correct API endpoint
+            const response = await axios.get(`/products/all-products`);
             setProducts(response.data);
             setLoading(false);
         } catch (err) {
@@ -54,13 +54,16 @@ function ViewProducts() {
                                 alt={product.name}
                                 className="product-image"
                             />
-                            <h2 className="product-name">{product.name}</h2>
-                            <p className="product-id">Id={product.id}</p>
-                            <p className="product-description">{product.discription}</p>
-                            <p className="product-price">Price: ₹{product.price.toFixed(2)}</p>
-                            <p className="product-gender">
-                                Gender: {product.gender === "m" ? "Male" : "Female"}
-                            </p>
+                            <div className="product-details">
+                                <h2 className="product-name">{product.name}</h2>
+                                <p className="product-id">ID: {product.id}</p>
+                                <p className="product-description">{product.discription}</p>
+                                <p className="product-price">Price: ₹{product.price.toFixed(2)}</p>
+                                <p className="product-gender">
+                                    Gender: {product.gender === "m" ? "Male" : "Female"}
+                                </p>
+                                <p className="product-seller">Seller: {product.sellerName}</p>
+                            </div>
                         </div>
                     ))}
                 </div>
