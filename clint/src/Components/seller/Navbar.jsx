@@ -9,7 +9,7 @@ function Navbar() {
     return (
         <div className="side-navbar">
             <div className="logo">
-                <Link to="/">MySite</Link>
+                <Link to="/">Handlooms</Link>
             </div>
             <div className="nav-links">
                 <Link to="/seller/home">

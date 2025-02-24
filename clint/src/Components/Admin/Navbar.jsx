@@ -9,7 +9,7 @@ function Navbar() {
     return (
         <div className="side-navbar">
             <div className="logo">
-                <Link to="/">MySite</Link>
+                <Link to="/">Handloom's</Link>
             </div>
             <div className="nav-links">
                 <Link to="/signinadmin/home">
@@ -23,6 +23,9 @@ function Navbar() {
                 </Link>
                 <Link to="/signinadmin/home/manageusers">
                     <FaUser className="icon" /> Manage Users
+                </Link>
+                <Link to="/signinadmin/home/managesellers">
+                    <FaUser className="icon" /> Manage Sellers
                 </Link>
                 <Link to="/signinadmin/home/payments">
                     <FaCreditCard className="icon" /> Payments {/* New "Payments" link */}
