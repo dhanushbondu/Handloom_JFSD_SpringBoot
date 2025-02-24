@@ -33,7 +33,6 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="com.klef.server.entity.Admin"/>
     <fullyQualifiedTypeName name="com.klef.server.service.UserService"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="com.klef.server.entity.Users"/>
     <fullyQualifiedTypeName name="com.klef.Server.repo.Userrepo"/>
     <fullyQualifiedTypeName name="com.klef.Server.repo.PaymentRepository"/>
@@ -54,9 +53,11 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="com.klef.Server.entity.Seller"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
     <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
     <fullyQualifiedTypeName name="com.klef.Server.controller.SellerController"/>
     <fullyQualifiedTypeName name="com.klef.Server.dto.ProductDTO"/>
+    <fullyQualifiedTypeName name="com.klef.Server.repo.ProductsRepo"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
 </qualifiedTypeNameHistroy>
