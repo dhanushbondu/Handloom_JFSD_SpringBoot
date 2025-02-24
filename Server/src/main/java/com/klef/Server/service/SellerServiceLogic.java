@@ -1,5 +1,7 @@
 package com.klef.Server.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,5 +45,19 @@ public class SellerServiceLogic implements SellerService {
 		}
 	}
 
+	@Override
+	public List<Seller> getSellers() {
+		return sellerrepo.findAll();
+	}
 
+	@Override
+    public String deleteSeller(String sname) {
+        // Check if the seller exists
+        if (sellerrepo.existsById(sname)) {
+            sellerrepo.deleteById(sname);
+            return "Seller deleted successfully";
+        } else {
+            return "Seller not found";
+        }
+    }
 }
