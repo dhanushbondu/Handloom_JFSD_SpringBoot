@@ -24,6 +24,7 @@ import SellerProducts from "./Components/seller/SellerProducts";
 import SellerAddProduct from "./Components/seller/SellerAddProduct";
 import SellerDeleteProduct from "./Components/seller/SellerDeleteProduct";
 import SellerProductView from "./Components/seller/SellerProductView";
+import SellerPayments from "./Components/seller/SellerPayments";
 function App() {
   console.log("App is rendered");
   return (
@@ -52,6 +53,7 @@ function App() {
     <Route path="/seller/home/addproducts" element={<SellerAddProduct/>}/>
     <Route path="/seller/home/deleteproducts" element={<SellerDeleteProduct/>}/>
     <Route path="/seller/home/products/view" element={<SellerProductView/>}/>
+    <Route path="/seller/home/payments" element={<SellerPayments/>}/>
     </Routes>
 
   );

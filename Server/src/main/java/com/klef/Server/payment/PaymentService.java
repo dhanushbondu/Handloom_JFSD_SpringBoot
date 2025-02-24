@@ -94,4 +94,8 @@ public class PaymentService {
     public List<PaymentDetailsDTO> getAllPaymentDetails() {
         return paymentRepository.findAllPaymentDetails(); 
     }
+    
+    public List<PaymentDetailsDTO> getPaymentDetailsBySellerName(String sellerName) {
+        return paymentRepository.findPaymentDetailsBySellerName(sellerName);
+    }
 } 

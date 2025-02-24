@@ -74,5 +74,16 @@ public class PaymentController {
             return ResponseEntity.status(500).body(null);  // Error while fetching data
         }
     }
-
+    @GetMapping("/get-payments-by-seller/{sellerName}")
+    public ResponseEntity<List<PaymentDetailsDTO>> getPaymentsBySeller(@PathVariable String sellerName) {
+        try {
+            List<PaymentDetailsDTO> paymentDetails = paymentService.getPaymentDetailsBySellerName(sellerName);
+            if (paymentDetails.isEmpty()) {
+                return ResponseEntity.status(404).body(null);  // No records found
+            }
+            return ResponseEntity.ok(paymentDetails);  // Return the list of payment details
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(null);  // Error while fetching data
+        }
+    }
 }
