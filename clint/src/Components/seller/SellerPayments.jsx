@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import axios from "axios";
-import "./navbar.css"; // Make sure to import the CSS for the sidebar
 
 function SellerPayments() {
     const [paymentDetails, setPaymentDetails] = useState([]);

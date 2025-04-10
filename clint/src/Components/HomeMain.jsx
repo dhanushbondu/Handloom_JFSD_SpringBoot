@@ -6,9 +6,9 @@ import img3 from "../Images/img3.jpeg";
 import img4 from "../Images/img4.jpeg";
 import img5 from "../Images/img10.jpeg";
 import img6 from "../Images/img6.jpeg";
-import img7 from "../Images/img7.jpeg";
 import img8 from "../Images/img13.png";
 import img9 from "../Images/img9.jpeg";
+
 import img10 from "../Images/img2.jpeg";
 import img11 from "../Images/img11.jpeg";
 import img12 from "../Images/img12.jpeg";
@@ -20,18 +20,19 @@ function HomeMain() {
 
   // Array of product data
   const products = [
-    { id: 1, img: img1, title: "Product 1" },
-    { id: 2, img: img2, title: "Product 2" },
-    { id: 3, img: img3, title: "Product 3" },
-    { id: 4, img: img4, title: "Product 4" },
-    { id: 5, img: img5, title: "Product 5" },
-    { id: 6, img: img6, title: "Product 6" },
-    { id: 7, img: img7, title: "Product 7" },
-    { id: 8, img: img8, title: "Product 8" },
-    { id: 9, img: img9, title: "Product 9" },
-    { id: 10, img: img10, title: "Product 10" },
-    { id: 11, img: img11, title: "Product 11" },
-    { id: 12, img: img12, title: "Product 12" },
+    { id: 1, img: img1, title: "French Baskets" },
+    { id: 2, img: img2, title: "Clay Items" },
+    { id: 3, img: img3, title: "Joot Fashion" },
+    { id: 4, img: img4, title: "Faberic Mats" },
+    { id: 5, img: img5, title: "Occasion Wear" },
+    { id: 6, img: img6, title: "Cotton Sarees" },
+    { id: 8, img: img8, title: "Formal Ware" },
+    { id: 9, img: img9, title: "Couple Ware" },
+    { id: 10, img: img10, title: "Lehanga" },
+    { id: 11, img: img11, title: "Jacquard Silk Fabric" },
+
+    { id: 12, img: img12, title: "Dothi" },
+
   ];
 
   useEffect(() => {

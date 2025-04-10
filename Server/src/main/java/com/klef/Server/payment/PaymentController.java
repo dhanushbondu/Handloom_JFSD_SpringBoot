@@ -63,17 +63,20 @@ public class PaymentController {
     
     @GetMapping("/get-all-payments")
     public ResponseEntity<List<PaymentDetailsDTO>> getAllPaymentDetails() {
+        System.out.println("Fetching all payments...");
         try {
-            // Fetch all payment details
             List<PaymentDetailsDTO> paymentDetails = paymentService.getAllPaymentDetails();
+            System.out.println("Payments fetched: " + paymentDetails.size());
             if (paymentDetails.isEmpty()) {
-                return ResponseEntity.status(404).body(null);  // No records found
+                return ResponseEntity.status(404).body(null);
             }
-            return ResponseEntity.ok(paymentDetails);  // Return the list of payment details
+            return ResponseEntity.ok(paymentDetails);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(null);  // Error while fetching data
+            e.printStackTrace();
+            return ResponseEntity.status(500).body(null);
         }
     }
+
     @GetMapping("/get-payments-by-seller/{sellerName}")
     public ResponseEntity<List<PaymentDetailsDTO>> getPaymentsBySeller(@PathVariable String sellerName) {
         try {
